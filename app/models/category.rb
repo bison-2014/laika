@@ -1,5 +1,10 @@
 class Category
   include Mongoid::Document
-  field :subcategory, type: String
-  field :main_category, type: String
+  include Mongoid::Timestamps
+
+  field :name, type: String
+  field :code, type: String
+  field :subcategory_name, type: String
+  field :subcategory_code, type: String
+
 end
