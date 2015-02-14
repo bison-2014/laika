@@ -1,0 +1,13 @@
+# Add your yelp API keys here here and save as "yelp.yml"
+
+development:
+  yelp_consumer_key:    'YOUR_CONSUMER_KEY'
+  yelp_consumer_secret: 'YOUR_CONSUMER_SECRET'
+  yelp_token:           'YOUR_TOKEN'
+  yelp_token_secret:    'YOUR_TOKEN_SECRET'
+
+test:
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
