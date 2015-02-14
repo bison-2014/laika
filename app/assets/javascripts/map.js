@@ -1,7 +1,8 @@
+//= require polyline
+
       var directionsDisplay;
       var directionsService = new google.maps.DirectionsService();
       var map;
-      // var chicago; // = new google.maps.LatLng(41.850033, -87.6500523);
 
       function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
@@ -41,13 +42,53 @@
 
         //call .route() on the directionsService, which requests the directions. passing it request and callback function
         directionsService.route(request, function(response, status){
-          console.log(response)
+          // console.log(response)
 
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+
+            //return response
+            // retrieve the polyline
+            // console.log(decodePolyline(response));
+            var polyline = decodePolyline(response);
+            createPolygonFromPolyline(polyline);
           }
         });
       }
+
+
+
+      function decodePolyline(response) {
+        var coord_array = polyline.decode(response.routes[0].overview_polyline);
+        return coord_array.map(function(coordinate) {
+          return [coordinate[1], coordinate[0]];
+        })
+      }
+
+      function createPolygonFromPolyline(polyline) {
+        var line = {
+            type:"Feature",
+            geometry:{
+             type:"Polygon",
+             coordinates: polyline,
+           },
+           properties:{}
+         }
+        var polygon = turf.buffer(line, 25, 'miles')
+
+        $.ajax({
+          url: '/maps/search',
+          type: 'post',
+          beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
+          data: polygon
+        })
+        .done(function(){
+          console.log("done!!!")
+        })
+
+      }
+
+
 
       //set an event listener on the window so that initialize() is called on load
 
