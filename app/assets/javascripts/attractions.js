@@ -12,6 +12,7 @@ $(document).ready(function(){
       dataType: 'json'
     }).done(function(data){
         console.log(data)
+        loadMarkers(data)
     });
 
   });
@@ -19,22 +20,25 @@ $(document).ready(function(){
 });
 
 
-// function loadMarkers(){
+function loadMarkers(markerObjects){
 
-//   console.log("loaging markers...")
+  console.log("loaging markerObjects...")
 
-//   // load marker jSon data
-//   $.getJSON(markerFile, function(data) {
+    // loop all the markerObjects
+    $.each(markerObjects, function(i,item){
+      // add marker to map
+      loadMarker(item);
+    });
+  }
 
-//     // loop all the markers
-//     $.each(data.markers, function(i,item){
+function loadMarker(markerObject){
+  // grab the lat and long
+  var latitude = markerObject.latitude;
+  var longitude = markerObject.longitude;
+  var coords = new google.maps.LatLng(latitude, longitude)
 
-//       // add marker to map
-//       loadMarker(item);
-//       });
-//     });
-//   }
-
-// function loadMarker(markerData){
-//   // parse through the
-// }
+  var marker = new google.maps.Marker({
+    position: coords,
+    map: map
+  });
+}
