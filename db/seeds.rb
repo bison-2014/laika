@@ -40,7 +40,9 @@ Location.each do |location|
       if business.respond_to?(:location) && business.location.respond_to?(:coordinate)
         a = Attraction.new(name: business.name,
                          rating: business.rating,
-                    coordinates: [business.location.coordinate.latitude, business.location.coordinate.longitude],
+                    longlat: {
+                      type: "Point", coordinates: [business.location.coordinate.longitude, business.location.coordinate.latitude]
+                      },
                    review_count: business.review_count,
                         yelp_id: business.id,
                        location: location,
