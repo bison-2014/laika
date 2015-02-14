@@ -27,6 +27,9 @@ gem 'spring',        group: :development
 # MongoDB for database
 gem 'mongoid'
 
+# Yelp API
+gem 'yelp'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -5,6 +5,7 @@ rvm:
 script:
   - bundle exec rake db:test:prepare
   # - RAILS_ENV=test bundle exec rake
-
+env:
+  - YELP_CONSUMER_KEY='abcdefg' YELP_CONSUMER_SECRET='hijklmn' YELP_TOKEN='12345' YELP_TOKEN_SECRET='67890'
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec

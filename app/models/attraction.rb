@@ -12,11 +12,15 @@ class Attraction
   has_and_belongs_to_many :categories
 
   def latitude
-    self.coordinate[0]
+    self.coordinates[0]
   end
 
   def longitude
-    self.coordinate[1]
+    self.coordinates[1]
+  end
+
+  def coordinate_hash
+    { latitude: self.coordinates[0], longitude: self.coordinates[1] }
   end
 
 end
