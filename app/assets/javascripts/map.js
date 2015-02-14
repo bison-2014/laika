@@ -40,16 +40,11 @@
           travelMode: google.maps.TravelMode.DRIVING
         };
 
-        //call .route() on the directionsService, which requests the directions. passing it request and callback function
         directionsService.route(request, function(response, status){
-          // console.log(response)
 
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
 
-            //return response
-            // retrieve the polyline
-            // console.log(decodePolyline(response));
             var polyline = decodePolyline(response);
             createPolygonFromPolyline(polyline);
           }
@@ -87,10 +82,6 @@
         })
 
       }
-
-
-
-      //set an event listener on the window so that initialize() is called on load
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
