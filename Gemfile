@@ -30,6 +30,22 @@ gem 'mongoid'
 # Yelp API
 gem 'yelp'
 
+# Simple Cov for test coverage
+gem 'simplecov', :require => false, :group => :test
+
+#Rspec test suite
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
+#Heroku 12 Factor
+gem 'rails_12factor', group: :production
+
+#Underscore.js for rails
+gem 'underscore-rails'
+
+gem 'polylines'
+
 gem 'pry'
 
 # Use ActiveModel has_secure_password
