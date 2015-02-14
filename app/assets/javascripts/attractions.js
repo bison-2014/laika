@@ -1,39 +1,22 @@
 $(document).ready(function(){
 
- // var token = $( 'meta[name="csrf-token"]' ).attr( 'content' );
-
- // $.ajaxSetup( {
- //  headers: {'X-CSRF-Token', token };
- // });
-
-
-
   $('#add-attraction').click(function(event){
     event.preventDefault();
 
-    console.log("YOU PUSHED IT");
+    var url = $(this).attr('href');
 
-    // var url = $(this).attr('href');
-    // console.log(url)
-
-    // $.ajax({
-    //   url: url,
-    //   type: "post",
-    //   data: {},
-    //   dataType: 'json',
-    //   success: function(response) {
-    //     console.log(response)
-    //   },
-    //   complete: function(response) {
-    //     console.log(response)
-    //   }
-    // });
+    $.ajax({
+      url: url,
+      type: "get",
+      beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
+      dataType: 'json'
+    }).done(function(data){
+        console.log(data)
+    });
 
   });
 
 });
-
-
 
 
 // function loadMarkers(){

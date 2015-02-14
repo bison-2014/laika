@@ -1,26 +1,11 @@
 class AttractionsController < ApplicationController
-  respond_to :html, :js, :json
+  respond_to  :json
 
+  def index
 
+    no = (params[:no] || 5).to_i
+    @attractions = Attraction.all.sample no
 
-  def create
-    # respond_to do |format|
-    #   format.json { render json: {test: 'test'} }
-    # end
-    # p request
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    p "______________________"
-    # @attractions = []
-    # 5.times { @attractions << Attraction.all.sample }
-    # @attractions.to_json
-
-    render json: {}
+    respond_with @attractions
   end
 end
