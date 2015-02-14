@@ -11,7 +11,6 @@ $(document).ready(function(){
       beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
       dataType: 'json'
     }).done(function(data){
-        console.log(data)
         loadMarkers(data)
     });
 
@@ -22,17 +21,13 @@ $(document).ready(function(){
 
 function loadMarkers(markerObjects){
 
-  console.log("loaging markerObjects...")
-
-    // loop all the markerObjects
     $.each(markerObjects, function(i,item){
-      // add marker to map
       loadMarker(item);
     });
   }
 
 function loadMarker(markerObject){
-  // grab the lat and long
+
   var latitude = markerObject.latitude;
   var longitude = markerObject.longitude;
   var coords = new google.maps.LatLng(latitude, longitude)
