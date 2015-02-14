@@ -1,14 +1,13 @@
       var directionsDisplay;
       var directionsService = new google.maps.DirectionsService();
       var map;
-      var chicago; // = new google.maps.LatLng(41.850033, -87.6500523);
+      // var chicago; // = new google.maps.LatLng(41.850033, -87.6500523);
 
       function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
 
         var mapOptions = {
-          zoom: 10,
-          center: chicago
+          // optional zoom and center
         };
 
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -18,9 +17,9 @@
       }
 
       function calcRoute() {
-        // set up the request's start, end and travel mode
-        var start = new google.maps.LatLng(41.953819, -87.654750); // Tac Quick
-        var end = new google.maps.LatLng(41.866557, -87.606751); // adler planetarium
+
+        var start = new google.maps.LatLng(41.953819, -87.654750); // Chicago
+        var end = new google.maps.LatLng(38.637548, -90.205010); // St. Louis
         var waypts = [];
         var checkboxArray = document.getElementById('waypoints');
 
