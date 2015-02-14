@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>Laika</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <style type="text/css">
+    html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+  </style>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBU2ArHRLAJwCb8Akp_ieojJMoM_92XaHk">
+  </script>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+ <%= yield %>
 
 </body>
 </html>
