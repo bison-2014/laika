@@ -38,6 +38,8 @@ GEM
       execjs
     coffee-script-source (1.9.0)
     connection_pool (2.1.1)
+    diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.3.0)
     faraday (0.9.1)
@@ -70,6 +72,7 @@ GEM
     multipart-post (2.0.0)
     optionable (0.2.0)
     origin (2.1.1)
+    polylines (0.2.0)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -83,6 +86,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.8)
       sprockets-rails (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.4)
+    rails_stdout_logging (0.0.3)
     railties (4.1.8)
       actionpack (= 4.1.8)
       activesupport (= 4.1.8)
@@ -91,6 +99,23 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    rspec-core (3.2.0)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-rails (3.2.0)
+      actionpack (>= 3.0, <= 4.2)
+      activesupport (>= 3.0, <= 4.2)
+      railties (>= 3.0, <= 4.2)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.1)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -101,6 +126,11 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     simple_oauth (0.2.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     spring (1.3.1)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -114,13 +144,12 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.7.0)
     yelp (2.0.4)
       faraday (~> 0.8, >= 0.8.0)
       faraday_middleware (~> 0.8, >= 0.8.0)
@@ -134,10 +163,14 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mongoid
+  polylines
   rails (= 4.1.8)
+  rails_12factor
+  rspec-rails (~> 3.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  simplecov
   spring
-  turbolinks
   uglifier (>= 1.3.0)
+  underscore-rails
   yelp
