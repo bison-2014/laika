@@ -170,11 +170,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mongoid
-<<<<<<< HEAD
   polylines
-=======
   pry
->>>>>>> 742056cc8f25065d4cc89d75e4f80a67765a356e
   rails (= 4.1.8)
   rails_12factor
   rspec-rails (~> 3.0)
