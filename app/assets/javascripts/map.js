@@ -1,3 +1,5 @@
+//= require polyline
+
       var directionsDisplay;
       var directionsService = new google.maps.DirectionsService();
       var map;
@@ -45,9 +47,21 @@
 
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+
+            // retrieve the polyline
+            console.log(decodePolyline(response));
           }
         });
       }
+
+      function decodePolyline(response) {
+        var coord_array = polyline.decode(response.routes[0].overview_polyline);
+        return coord_array.map(function(coordinate) {
+          return [coordinate[1], coordinate[0]];
+        })
+      }
+
+
 
       //set an event listener on the window so that initialize() is called on load
 
