@@ -23,4 +23,16 @@ class Attraction
     { latitude: self.longlat.coordinates[1], longitude: self.longlat.coordinates[0] }
   end
 
+  def self.search_within(polygon)
+    Attraction.where("longlat.coordinates" => {
+                      "$geoWithin" => {
+                          "$geometry" => polygon
+                        }
+                      })
+  end
+
 end
+
+# { "type" => "Polygon", "coordinates" => [[[0.0, 0.0], [-90.0, 0.0], [-90.0, 50.0], [0.0, 50.0], [0.0, 0.0]]] }
+
+
