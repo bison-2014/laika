@@ -1,4 +1,4 @@
-class Category
+class Location
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -6,5 +6,7 @@ class Category
   field :code, type: String
   field :subcategory_name, type: String
   field :subcategory_code, type: String
+
+  has_and_belongs_to_many :attractions
 
 end

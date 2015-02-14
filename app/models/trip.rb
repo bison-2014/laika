@@ -4,5 +4,6 @@ class Trip
 
   field :origin, type: Location
   field :destination, type: Location
-  field :waypoints, type: Array
+
+  has_many :waypoints, class_name: 'Attraction'
 end

@@ -4,10 +4,19 @@ class Attraction
 
   field :name, type: String
   field :rating, type: Integer
-  field :num_of_reviews, type: Integer
-  field :latitude, type: Float
-  field :longitude, type: Float
+  field :review_count, type: Integer
+  field :coordinates, type: Array
   field :yelp_id, type: Integer
 
-  has_many :categories
+  belongs_to :location
+  has_and_belongs_to_many :categories
+
+  def latitude
+    self.coordinate[0]
+  end
+
+  def longitude
+    self.coordinate[1]
+  end
+
 end
