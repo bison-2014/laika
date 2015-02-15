@@ -15,45 +15,92 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
   directionsDisplay.setMap(map);
 
-  calcRoute();
+  route = new Route();
+
+  route.calculateRoute();
+
+  // calcRoute();
 }
 
-function calcRoute() {
+//'''''''''
 
-  var start = new google.maps.LatLng(41.953819, -87.654750); // Chicago
-  var end = new google.maps.LatLng(38.637548, -90.205010); // St. Louis
+var Route = function(){
+  this.start = new google.maps.LatLng(41.953819, -87.654750), // Chicago for now
+  this.end = new google.maps.LatLng(38.637548, -90.205010), // St. Louis for now
+  this.waypts = this.getWaypoints();
+};
+
+Route.prototype.getWaypoints = function(){
   var waypts = [];
   var checkboxArray = document.getElementById('waypoints');
 
   for (var i = 0; i < checkboxArray.length; i++) {
     if (checkboxArray.options[i].selected == true) {
       waypts.push({
-        location:checkboxArray[i].value,
-        stopover:true});
+        location: checkboxArray[i].value,
+        stopover: true});
     }
   }
+  return waypts;
+};
+
+Route.prototype.calculateRoute = function(){
 
   var request = {
-    origin: start,
-    destination: end,
-    waypoints: waypts,
+    origin: this.start,
+    destination: this.end,
+    waypoints: this.waypts,
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
 
   directionsService.route(request, function(response, status){
-
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
-
-      var polyline = decodePolyline(response);
-      var polygonGeoJsonObject = createPolygonFromPolyline(polyline);
-
-// comment this line out to prevent drawing of polygon
-      var polygonCoords = processPolygonCoordsIntoLatLong(polygonGeoJsonObject)
+      this.polyline = decodePolyline(response);
+      console.log(this.polyline)
     }
   });
-}
+};
+
+//'''''''''
+
+// function calcRoute() {
+
+//   var start = new google.maps.LatLng(41.953819, -87.654750); // Chicago
+//   var end = new google.maps.LatLng(38.637548, -90.205010); // St. Louis
+//   var waypts = [];
+//   var checkboxArray = document.getElementById('waypoints');
+
+//   for (var i = 0; i < checkboxArray.length; i++) {
+//     if (checkboxArray.options[i].selected == true) {
+//       waypts.push({
+//         location:checkboxArray[i].value,
+//         stopover:true});
+//     }
+//   }
+
+//   var request = {
+//     origin: start,
+//     destination: end,
+//     waypoints: waypts,
+//     optimizeWaypoints: true,
+//     travelMode: google.maps.TravelMode.DRIVING
+//   };
+
+//   directionsService.route(request, function(response, status){
+
+//     if (status == google.maps.DirectionsStatus.OK) {
+//       directionsDisplay.setDirections(response);
+
+//       var polyline = decodePolyline(response);
+//       var polygonGeoJsonObject = createPolygonFromPolyline(polyline);
+
+// // comment this line out to prevent drawing of polygon
+//       var polygonCoords = processPolygonCoordsIntoLatLong(polygonGeoJsonObject)
+//     }
+//   });
+// }
 
 //------------------------------------------------------------
 
