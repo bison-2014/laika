@@ -1,10 +1,14 @@
 class MapsController < ApplicationController
 
+  respond_to :json
+
   def index
   end
 
   def search
-    redirect_to "/"
+    geometry = params['features'][0]['geometry']
+    @attractions = Attraction.search_within(geometry).all.to_a
+    render json: { attractions: @attractions }
   end
 
 end

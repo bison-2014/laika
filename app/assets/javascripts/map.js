@@ -64,24 +64,46 @@
         var line = {
             type:"Feature",
             geometry:{
-             type:"Polygon",
-             coordinates: polyline,
-           },
-           properties:{}
+              type:"LineString",
+              coordinates: polyline,
+            },
+            properties:{}
          }
         var polygon = turf.buffer(line, 25, 'miles')
+        console.log(polygon)
 
         $.ajax({
           url: '/maps/search',
           type: 'post',
           beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
-          data: polygon
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify(polygon),
         })
-        .done(function(){
-          console.log("done!!!")
+        .success(function(response){
+          console.log(response.attractions)
+          loadMarkers(response.attractions)
         })
 
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
+function loadMarkers(markerObjects){
+
+    $.each(markerObjects, function(i,item){
+      loadMarker(item);
+    });
+  }
+
+function loadMarker(markerObject){
+
+  var latitude = markerObject.longlat.coordinates[1];
+  var longitude = markerObject.longlat.coordinates[0];
+  var coords = new google.maps.LatLng(latitude, longitude)
+
+  var marker = new google.maps.Marker({
+    position: coords,
+    map: map
+  });
+}

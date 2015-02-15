@@ -28,8 +28,8 @@ function loadMarkers(markerObjects){
 
 function loadMarker(markerObject){
 
-  var latitude = markerObject.latitude;
-  var longitude = markerObject.longitude;
+  var latitude = markerObject.longlat.coordinates[1];
+  var longitude = markerObject.longlat.coordinates[0];
   var coords = new google.maps.LatLng(latitude, longitude)
 
   var marker = new google.maps.Marker({
