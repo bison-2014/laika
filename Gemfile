@@ -37,12 +37,16 @@ gem 'mongoid'
 # Yelp API
 gem 'yelp'
 
+# BCrypt for User Authentication
+gem 'bcrypt'
+
 # Simple Cov for test coverage
 gem 'simplecov', :require => false, :group => :test
 
 #Rspec test suite
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'mongoid-rspec', '1.4.5'
 end
 
 #Heroku 12 Factor
