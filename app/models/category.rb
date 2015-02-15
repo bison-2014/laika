@@ -9,4 +9,5 @@ class Category
 
   has_and_belongs_to_many :attractions
 
+  validates_presence_of :name, :subcategory_name, :code, :subcategory_code
 end
