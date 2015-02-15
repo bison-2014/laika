@@ -129,7 +129,6 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_layout (1.0.24)
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.3)
     railties (4.2.0)
@@ -210,7 +209,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   coffee-rails (~> 4.0.0)
-  foundation-rails (~> 5.5.0)
+  foundation-rails
   jbuilder (~> 2.0)
   jquery-rails
   mongoid
@@ -219,7 +218,6 @@ DEPENDENCIES
   pry
   rails (= 4.2.0)
   rails_12factor
-  rails_layout
   responders (~> 2.0)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0.1)
