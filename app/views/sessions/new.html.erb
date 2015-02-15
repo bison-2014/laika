@@ -1,0 +1,12 @@
+<div id='login-form'>
+<h2>Log In</h2>
+  <div id='errors'></div>
+
+  <%=form_tag log_in_path do%>
+    Email: <%=text_field_tag :email %><br>
+    Password: <%=password_field_tag :password %><br>
+    Confirm Password: <%=password_field_tag :password_confirmation %><br>
+    <%=submit_tag "Log in" %>
+  <%end%>
+  <div id="signup_link"><%= link_to 'Sign Up', new_user_path %></div>
+</div>
