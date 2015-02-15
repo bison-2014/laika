@@ -14,9 +14,6 @@ Yelp.client.configure do |config|
   config.token = YELP['yelp_token']
   config.token_secret = YELP['yelp_token_secret']
 end
-# seed one user
-user1 = User.new(name: 'user1', email: 'user1@email.com', password: 'password')
-user1.save!
 
 # seed categories
 Category.destroy_all
@@ -27,6 +24,15 @@ CSV.foreach('db/yelp-categories.csv', headers: true) do |row|
       subcategory_code: row['subcategory_code'],
       subcategory_name: row['subcategory_name'])
 end
+
+# seed one user
+User.destroy_all
+
+user1 = User.new(name: 'user1', email: 'user1@email.com', password: 'password')
+user1.save!
+user1.interests.push(Category.find_by(subcategory_name: "Arcades"))
+user1.interests.push(Category.find_by(subcategory_name: "Music Venues"))
+user1.save!
 
 # seed one location (Chicago)
 Location.destroy_all
