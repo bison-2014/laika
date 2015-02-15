@@ -7,6 +7,8 @@ class Location
 
   has_many :attractions
 
+  validates_presence_of :name, :coordinates
+
   def latitude
     self.coordinates[0]
   end
