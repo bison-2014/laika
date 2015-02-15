@@ -64,18 +64,21 @@
         var line = {
             type:"Feature",
             geometry:{
-             type:"Polygon",
-             coordinates: polyline,
-           },
-           properties:{}
+              type:"LineString",
+              coordinates: polyline,
+            },
+            properties:{}
          }
         var polygon = turf.buffer(line, 25, 'miles')
+        console.log(polygon)
 
         $.ajax({
           url: '/maps/search',
           type: 'post',
           beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
-          data: polygon
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify(polygon),
         })
         .done(function(){
           console.log("done!!!")
