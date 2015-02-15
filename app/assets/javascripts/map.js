@@ -141,10 +141,28 @@ function loadMarker(markerObject){
 
   var latitude = markerObject.longlat.coordinates[1];
   var longitude = markerObject.longlat.coordinates[0];
-  var coords = new google.maps.LatLng(latitude, longitude)
+  var coords = new google.maps.LatLng(latitude, longitude);
 
   var marker = new google.maps.Marker({
     position: coords,
     map: map
   });
+
+  addInfoWindow(markerObject, marker);
+}
+
+function addInfoWindow(markerObject, marker){
+  var contentString = "<div>" +
+    '<p>' +
+    markerObject.name +
+    '</p>' +
+    '</div>';
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addDomListener(marker, 'click', function(){
+      infoWindow.open(map, marker);
+    });
 }
