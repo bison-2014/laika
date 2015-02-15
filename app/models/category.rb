@@ -8,6 +8,7 @@ class Category
   field :subcategory_code, type: String
 
   has_and_belongs_to_many :attractions
+  belongs_to :users
 
   validates_presence_of :name, :subcategory_name, :code, :subcategory_code
 end
