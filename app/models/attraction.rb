@@ -6,7 +6,7 @@ class Attraction
   field :rating, type: Integer
   field :review_count, type: Integer
   field :longlat, type: Hash
-  field :yelp_id, type: Integer
+  field :yelp_id, type: String
 
   belongs_to :location
   has_and_belongs_to_many :categories

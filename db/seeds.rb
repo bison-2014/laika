@@ -47,17 +47,18 @@ Location.each do |location|
     result = Yelp.client.search_by_coordinates(location.coordinate_hash, { sort: 2, category_filter: category.subcategory_code, radius_filter: 40000 })
     result.businesses.each do |business|
       if business.respond_to?(:location) && business.location.respond_to?(:coordinate)
-        a = Attraction.new(name: business.name,
-                         rating: business.rating,
-                    longlat: {
-                      type: "Point", coordinates: [business.location.coordinate.longitude, business.location.coordinate.latitude]
-                      },
-                   review_count: business.review_count,
-                        yelp_id: business.id,
-                       location: location,
+        a = Attraction.find_or_initialize_by(yelp_id: business.id)
+        a.update_attributes(name: business.name,
+                             rating: business.rating,
+                             longlat: {
+                               type: "Point",
+                               coordinates: [business.location.coordinate.longitude, business.location.coordinate.latitude]
+                               },
+                             review_count: business.review_count,
+                             location: location,
                       )
         a.categories << category
-        a.save
+        a.save!
       end
     end
     # sleep()
