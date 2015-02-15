@@ -14,6 +14,9 @@ Yelp.client.configure do |config|
   config.token = YELP['yelp_token']
   config.token_secret = YELP['yelp_token_secret']
 end
+# seed one user
+user1 = User.new(name: 'user1', email: 'user1@email.com', password: 'password')
+user1.save!
 
 # seed categories
 Category.destroy_all

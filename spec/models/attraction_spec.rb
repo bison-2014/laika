@@ -1,5 +1,12 @@
 require 'rails_helper'
+require 'mongoid_helper'
 
-RSpec.describe Attraction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Attraction do
+
+    it { is_expected.to belong_to(:location) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:longlat) }
+    it { is_expected.to validate_presence_of(:yelp_id) }
+    it { is_expected.to validate_uniqueness_of(:yelp_id) }
+
 end
