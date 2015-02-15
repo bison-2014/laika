@@ -46,12 +46,52 @@
             directionsDisplay.setDirections(response);
 
             var polyline = decodePolyline(response);
-            createPolygonFromPolyline(polyline);
+            var polygonGeoJsonObject = createPolygonFromPolyline(polyline);
+
+// comment this line out to prevent drawing of polygon
+            var polygonCoords = processPolygonCoordsIntoLatLong(polygonGeoJsonObject)
           }
         });
       }
 
+//------------------------------------------------------------
 
+  // Define the LatLng coordinates for the polygon's path.
+  function processPolygonCoordsIntoLatLong(polygonGeoJsonObject) {
+    var polygonCoords = createLatLongObjects(polygonGeoJsonObject);
+    drawPolygon(polygonCoords)
+    return polygonCoords
+
+  }
+
+  function createLatLongObjects(geoJsonObject){
+    var latLongArray = []
+    var coordArray = geoJsonObject.features[0].geometry.coordinates[0]
+
+    console.log(coordArray)
+
+    coordArray.forEach(function(coord){
+      console.log(coord)
+      latLongArray.push(new google.maps.LatLng(coord[1], coord[0]))
+      return latLongArray
+    })
+    return latLongArray
+  }
+
+  // // Construct the polygon.
+  function drawPolygon(coordsToDraw){
+    bufferedPolygon = new google.maps.Polygon({
+      paths: coordsToDraw,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35
+    });
+    bufferedPolygon.setMap(map);
+  }
+
+//-------------------------------------------------------------
 
       function decodePolyline(response) {
         var coord_array = polyline.decode(response.routes[0].overview_polyline);
@@ -66,11 +106,11 @@
             geometry:{
               type:"LineString",
               coordinates: polyline,
-            },
-            properties:{}
+           },
+           properties:{}
          }
+
         var polygon = turf.buffer(line, 25, 'miles')
-        console.log(polygon)
 
         $.ajax({
           url: '/maps/search',
@@ -85,9 +125,10 @@
           loadMarkers(response.attractions)
         })
 
+        return polygon
       }
 
-      google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize);
 
 function loadMarkers(markerObjects){
 
