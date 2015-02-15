@@ -11,7 +11,7 @@
           // optional zoom and center
         };
 
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
         directionsDisplay.setMap(map);
 
         calcRoute();
