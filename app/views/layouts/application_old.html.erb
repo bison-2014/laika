@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Laika</title>
+  <style type="text/css">
+    html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+  </style>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=<%= j GOOGLE %>">
+  </script>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+ <%= yield %>
+
+</body>
+</html>
