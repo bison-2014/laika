@@ -80,11 +80,30 @@
           dataType: "json",
           data: JSON.stringify(polygon),
         })
-        .done(function(){
-          console.log("done!!!")
+        .success(function(response){
+          console.log(response.attractions)
+          loadMarkers(response.attractions)
         })
 
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
+function loadMarkers(markerObjects){
+
+    $.each(markerObjects, function(i,item){
+      loadMarker(item);
+    });
+  }
+
+function loadMarker(markerObject){
+
+  var latitude = markerObject.longlat.coordinates[1];
+  var longitude = markerObject.longlat.coordinates[0];
+  var coords = new google.maps.LatLng(latitude, longitude)
+
+  var marker = new google.maps.Marker({
+    position: coords,
+    map: map
+  });
+}
