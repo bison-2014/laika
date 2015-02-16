@@ -22,14 +22,13 @@ class Attraction
     self.longlat['coordinates'][1]
   end
 
-  def self.search_within(geometry)
+  def self.search_within(geometry, interests = [])
     Attraction.where("longlat.coordinates" => {
                       "$geoWithin" => {
                           "$geometry" => geometry
                         }
-                      })
+                      }).all.to_a.select { |attraction| (attraction.categories & interests).any? }
   end
-
 end
 
 # { "type" => "Polygon", "coordinates" => [[[0.0, 0.0], [-90.0, 0.0], [-90.0, 50.0], [0.0, 50.0], [0.0, 0.0]]] }

@@ -3,7 +3,7 @@ class AttractionsController < ApplicationController
 
   def index
     @attractions = Attraction.all.sample(5)
-
     respond_with @attractions
   end
+
 end
