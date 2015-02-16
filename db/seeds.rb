@@ -8,6 +8,84 @@
 
 require 'csv'
 
+# seed one user, if he/she doesn't exist
+def seed_user
+  user = User.find_by(email: 'user1@email.com')
+  if user
+    puts "Dummy user has already been added."
+  else
+    user = User.create!(name: 'user1', email: 'user1@email.com', password: 'password')
+    user.interests.push(Category.find_by(subcategory_name: "Arcades"))
+    user.interests.push(Category.find_by(subcategory_name: "Music Venues"))
+    user.save!
+    puts "Added dummy user '#{user.name}' with email '#{user.email}' to Users."
+  end
+end
+
+def seed_locations
+  # seed cities
+  CSV.foreach('db/major-us-cities.csv', headers: true) do |row|
+    longlat = { type: "Point", coordinates: [row['longitude'], row['latitude']] }
+    Location.find_or_create_by(city: row['city'],
+                             region: row['region'],
+                            longlat: longlat)
+  end
+
+  # seed parks
+  # TODO
+end
+
+def seed_categories
+  CSV.foreach('db/yelp-categories.csv', headers: true) do |row|
+    Category.find_or_create_by(name: row['name'],
+                               code: row['code'],
+                   subcategory_code: row['subcategory_code'],
+                   subcategory_name: row['subcategory_name'])
+  end
+end
+
+def has_location?(business)
+  business.respond_to?(:location) && business.location.respond_to?(:coordinate)
+end
+
+def seed_attractions
+  Location.all[0..10].each do |location|
+    Category.each do |category|
+
+      # check if you have already requested Yelp for this location and category
+      unless Seed.find_by(location: location, category: category)
+        puts "Searching for #{category.subcategory_code} in #{location.city}, #{location.region}"
+
+        result = Yelp.client.search_by_coordinates(
+              {  latitude: location.latitude,
+                longitude: location.longitude },
+              {           sort: 2,
+               category_filter: category.subcategory_code,
+                 radius_filter: 40000 })
+
+        result.businesses.select { |business| has_location?(business) }.each do |business|
+          a = Attraction.find_or_initialize_by(yelp_id: business.id)
+          a.update_attributes(name: business.name,
+                            rating: business.rating,
+                           longlat: {
+                                type: "Point",
+                         coordinates: [business.location.coordinate.longitude, business.location.coordinate.latitude]
+                                    },
+                      review_count: business.review_count,
+                          location: location,
+                        )
+          a.categories.push(category) unless a.categories.include?(category)
+          a.save!
+        end # end result.businesses.each
+
+        Seed.create!(location: location, category: category)
+      end # end unless
+
+    end
+  end
+
+end
+
 Yelp.client.configure do |config|
   config.consumer_key = YELP['yelp_consumer_key']
   config.consumer_secret = YELP['yelp_consumer_secret']
@@ -15,52 +93,7 @@ Yelp.client.configure do |config|
   config.token_secret = YELP['yelp_token_secret']
 end
 
-# seed categories
-Category.destroy_all
-
-CSV.foreach('db/yelp-categories.csv', headers: true) do |row|
-  Category.create(name: row['name'],
-                  code: row['code'],
-      subcategory_code: row['subcategory_code'],
-      subcategory_name: row['subcategory_name'])
-end
-
-# seed one user
-User.destroy_all
-
-user1 = User.new(name: 'user1', email: 'user1@email.com', password: 'password')
-user1.save!
-user1.interests.push(Category.find_by(subcategory_name: "Arcades"))
-user1.interests.push(Category.find_by(subcategory_name: "Music Venues"))
-user1.save!
-
-# seed one location (Chicago)
-Location.destroy_all
-
-location = Location.new(name: 'Chicago')
-location.coordinates = [41.8369, -87.6847]
-location.save!
-
-Location.each do |location|
-  Category.each do |category|
-    puts "Searching for #{category.subcategory_code} in #{location.name}"
-    result = Yelp.client.search_by_coordinates(location.coordinate_hash, { sort: 2, category_filter: category.subcategory_code, radius_filter: 40000 })
-    result.businesses.each do |business|
-      if business.respond_to?(:location) && business.location.respond_to?(:coordinate)
-        a = Attraction.find_or_initialize_by(yelp_id: business.id)
-        a.update_attributes(name: business.name,
-                             rating: business.rating,
-                             longlat: {
-                               type: "Point",
-                               coordinates: [business.location.coordinate.longitude, business.location.coordinate.latitude]
-                               },
-                             review_count: business.review_count,
-                             location: location,
-                      )
-        a.categories << category
-        a.save!
-      end
-    end
-    # sleep()
-  end
-end
+seed_user
+seed_locations
+seed_categories
+seed_attractions
