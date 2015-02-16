@@ -174,7 +174,7 @@ var InfoBox = function(attraction, marker){
                       '<p>' +
                       attraction.name +
                       '</p>' +
-                      '<p> Interest Areas: ' +
+                      '<p> Interest Area: ' +
                       attraction.yelp_categories[0][0] +
                       '</p>' +
                       '<p> Rating: ' +
@@ -183,6 +183,9 @@ var InfoBox = function(attraction, marker){
                       '<p> Number of Reviews: ' +
                       attraction.review_count +
                       '</p>' +
+                      '<p>' +
+                      '<a target="_blank" href="' + attraction.yelp_url + '">Link to Yelp Page</a>' +
+                      '</p>'
                       '</div>',
   this.popup = new google.maps.InfoWindow({content: this.contentString});
   this.addClickListener(marker)
