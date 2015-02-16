@@ -25,6 +25,8 @@ end
 # Pick a route
 
 def seed_locations
+  # for demo, seed the following cities: Chicago, IL; Seattle, WA; Eau Claire, WI; Milwaukee, WI; Madison, WI; St. Paul, MN; Billings, MT; Missoula, MT; Spokane, WA; Tacoma, WA; Seattle, WA; Minneapolis, MN;
+
   # seed cities
   CSV.foreach('db/major-us-cities.csv', headers: true) do |row|
     longlat = { type: "Point", coordinates: [row['longitude'], row['latitude']] }
