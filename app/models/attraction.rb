@@ -29,6 +29,12 @@ class Attraction
                         }
                       }).all.to_a.select { |attraction| (attraction.categories & interests).any? }
   end
+
+  # def interest_areas
+  #   subcategory_array = self.categories.map { |category| category.subcategory_name.to_s }
+  #   return subcategory_array.join(",")
+  # end
+
 end
 
 # { "type" => "Polygon", "coordinates" => [[[0.0, 0.0], [-90.0, 0.0], [-90.0, 50.0], [0.0, 50.0], [0.0, 0.0]]] }

@@ -176,6 +176,9 @@ var InfoBox = function(attraction, marker){
                       '<p>' +
                       attraction.name +
                       '</p>' +
+                      // '<p> Interest Areas: ' +
+                      // attraction.interest_areas +
+                      // '</p>' +
                       '<p> Rating: ' +
                       attraction.rating +
                       '</p>' +
