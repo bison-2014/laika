@@ -7,6 +7,10 @@ class Attraction
   field :review_count, type: Integer
   field :longlat, type: Hash
   field :yelp_id, type: String
+  field :yelp_categories
+  field :yelp_mobile_url, type: String
+  field :yelp_url, type: String
+  field :yelp_image_url, type: String
 
   belongs_to :location
   has_and_belongs_to_many :categories
@@ -29,6 +33,7 @@ class Attraction
                         }
                       }).all.to_a.select { |attraction| (attraction.categories & interests).any? }
   end
+
 end
 
 # { "type" => "Polygon", "coordinates" => [[[0.0, 0.0], [-90.0, 0.0], [-90.0, 50.0], [0.0, 50.0], [0.0, 0.0]]] }

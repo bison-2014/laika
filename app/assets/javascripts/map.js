@@ -1,4 +1,5 @@
 //= require polyline
+var map;
 
 var directionsService = new google.maps.DirectionsService();
 
@@ -114,6 +115,7 @@ Polygon.prototype.searchWithin = function(polygon){
   data: JSON.stringify(polygon),
 })
   .success(function(response){
+    console.log(response)
     loadMarkers(response.attractions)
   })
 }
@@ -150,7 +152,6 @@ Drawer.prototype.draw = function(geoJsonObject){
 //------------Markers----------------
 
 function loadMarkers(attractions){
-
     $.each(attractions, function(i,item){
       loadMarker(item);
     });
@@ -168,6 +169,7 @@ function loadMarker(attraction){
   });
 
   new InfoBox(attraction, marker)
+  loadAttractionList(attraction, marker)
 }
 
 //-----------InfoBox----------------
@@ -175,6 +177,15 @@ var InfoBox = function(attraction, marker){
   this.contentString ='<div>' +
                       '<p>' +
                       attraction.name +
+                      '</p>' +
+                      '<p> Interest Areas: ' +
+                      // attraction.yelp_categories[0][0] +
+                      '</p>' +
+                      '<p> Rating: ' +
+                      attraction.rating +
+                      '</p>' +
+                      '<p> Number of Reviews: ' +
+                      attraction.review_count +
                       '</p>' +
                       '</div>',
   this.popup = new google.maps.InfoWindow({content: this.contentString});
