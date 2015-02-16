@@ -7,6 +7,10 @@ class Attraction
   field :review_count, type: Integer
   field :longlat, type: Hash
   field :yelp_id, type: String
+  field :yelp_categories
+  field :yelp_mobile_url, type: String
+  field :yelp_url, type: String
+  field :yelp_image_url, type: String
 
   belongs_to :location
   has_and_belongs_to_many :categories
@@ -29,11 +33,6 @@ class Attraction
                         }
                       }).all.to_a.select { |attraction| (attraction.categories & interests).any? }
   end
-
-  # def interest_areas
-  #   subcategory_array = self.categories.map { |category| category.subcategory_name.to_s }
-  #   return subcategory_array.join(",")
-  # end
 
 end
 
