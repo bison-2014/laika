@@ -176,6 +176,12 @@ var InfoBox = function(attraction, marker){
                       '<p>' +
                       attraction.name +
                       '</p>' +
+                      '<p> Rating: ' +
+                      attraction.rating +
+                      '</p>' +
+                      '<p> Number of Reviews: ' +
+                      attraction.review_count +
+                      '</p>' +
                       '</div>',
   this.popup = new google.maps.InfoWindow({content: this.contentString});
   this.addClickListener(marker)
