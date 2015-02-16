@@ -2,22 +2,20 @@ class Location
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :coordinates, type: Array
-  field :name, type: String
+  field :longlat, type: Hash
+  field :city, type: String
+  field :region, type: String
 
   has_many :attractions
 
-  validates_presence_of :name, :coordinates
+  validates_presence_of :city, :region, :longlat
 
   def latitude
-    self.coordinates[0]
+    self.longlat['coordinates'][1]
   end
 
   def longitude
-    self.coordinates[1]
+    self.longlat['coordinates'][0]
   end
 
-  def coordinate_hash
-    { latitude: self.coordinates[0], longitude: self.coordinates[1] }
-  end
 end
