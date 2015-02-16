@@ -26,6 +26,7 @@ end
 
 def seed_locations
   # for demo, seed the following cities: Chicago, IL; Seattle, WA; Eau Claire, WI; Milwaukee, WI; Madison, WI; St. Paul, MN; Billings, MT; Missoula, MT; Spokane, WA; Tacoma, WA; Seattle, WA; Minneapolis, MN;
+  # may need to add more cities to make sure we get enough back when we change the route (see how it works and figure out those cities)
 
   # seed cities
   CSV.foreach('db/major-us-cities.csv', headers: true) do |row|
