@@ -1,4 +1,5 @@
 //= require polyline
+var map;
 
 var directionsService = new google.maps.DirectionsService();
 
@@ -20,8 +21,8 @@ function initialize() {
 //-------Route----------
 
 var Route = function(){
-  this.start = new google.maps.LatLng(41.953819, -87.654750), // Chicago for now
-  this.end = new google.maps.LatLng(38.637548, -90.205010), // St. Louis for now
+  this.start = new google.maps.LatLng(33.520660,-86.80249), //Birmingham, AL
+  this.end = new google.maps.LatLng(30.42130,-87.21691), //Pensacola, FL
   this.waypts = this.getWaypoints();
 };
 
@@ -114,6 +115,7 @@ Polygon.prototype.searchWithin = function(polygon){
   data: JSON.stringify(polygon),
 })
   .success(function(response){
+    console.log(response)
     loadMarkers(response.attractions)
   })
 }
@@ -150,7 +152,6 @@ Drawer.prototype.draw = function(geoJsonObject){
 //------------Markers----------------
 
 function loadMarkers(attractions){
-
     $.each(attractions, function(i,item){
       loadMarker(item);
     });
@@ -172,13 +173,14 @@ function loadMarker(attraction){
 
 //-----------InfoBox----------------
 var InfoBox = function(attraction, marker){
+  console.log(attraction.yelp_categories);
   this.contentString ='<div>' +
                       '<p>' +
                       attraction.name +
                       '</p>' +
-                      // '<p> Interest Areas: ' +
-                      // attraction.interest_areas +
-                      // '</p>' +
+                      '<p> Interest Areas: ' +
+                      attraction.yelp_categories[0][0] +
+                      '</p>' +
                       '<p> Rating: ' +
                       attraction.rating +
                       '</p>' +
