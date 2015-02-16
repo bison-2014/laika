@@ -2,11 +2,14 @@ Rails.application.routes.draw do
 
   resources :attractions, only: [:index]
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :users
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get '/users/:id/categories' => 'users#travel_profile', as: :travel_profile
+
+  get "/log-in" => "sessions#new"
+  post "/log-in" => "sessions#create"
+  get "/log-out" => "sessions#destroy", as: :log_out
+
   post 'maps/search' => 'maps#search'
   resources :maps, only: [:index]
 
