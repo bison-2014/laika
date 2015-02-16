@@ -1,9 +1,6 @@
 //= require polyline
 
-// var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-// var map;
-// var route;
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
