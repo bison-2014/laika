@@ -1,0 +1,11 @@
+<h1>Where can your interests take you?</h1>
+
+<div class="home_container">
+  <div class="get_route">
+  <% form_for :maps, :url => {action: 'directions', controller: 'maps'}, method: 'GET', id:"calculate-route" do |f| %>
+  <%=f.text_area :origin, :required => true, :placeholder => "Origin" %>
+  <%=f.text_area :destination, :required => true, :placeholder => "Final Destination" %>
+  <%=f.submit "Submit" %>
+  <% end %>
+  </div>
+</div>

@@ -11,4 +11,7 @@ class MapsController < ApplicationController
     render json: { attractions: @attractions }
   end
 
+  def directions
+  end
+
 end

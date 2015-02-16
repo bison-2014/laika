@@ -21,13 +21,25 @@ html body {
   height: 100%;
  }
 
-#map_canvas {
+
+@media only screen and (min-width: 1200px) {
+  .home_container {
+    width: 100%;
+    height: 100%;
+    background-image: url("road.jpg");
+  }
+
+  #map_canvas {
   height: 100%;
   width: 70%;
   position: absolute;
   margin: 0;
   padding: 0;
 }
+
+}
+
+
 
 #control_panel {
   float: right;
@@ -37,3 +49,4 @@ html body {
   margin: 0;
   padding: 0;
 }
+
