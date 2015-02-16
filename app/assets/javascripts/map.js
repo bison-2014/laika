@@ -1,8 +1,9 @@
 //= require polyline
 
-var directionsDisplay;
+// var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-var map;
+// var map;
+// var route;
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -14,15 +15,12 @@ function initialize() {
 
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
   directionsDisplay.setMap(map);
-
   route = new Route();
-
   route.calculateRoute();
 
-  // calcRoute();
 }
 
-//'''''''''
+//-------Route----------
 
 var Route = function(){
   this.start = new google.maps.LatLng(41.953819, -87.654750), // Chicago for now
@@ -41,11 +39,11 @@ Route.prototype.getWaypoints = function(){
         stopover: true});
     }
   }
+
   return waypts;
 };
 
 Route.prototype.calculateRoute = function(){
-
   var request = {
     origin: this.start,
     destination: this.end,
@@ -56,79 +54,91 @@ Route.prototype.calculateRoute = function(){
 
   directionsService.route(request, function(response, status){
     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      this.polyline = decodePolyline(response);
-      console.log(this.polyline)
+
+      decoder = new PolylineDecoder()
+      route.polyline = decoder.decodePolyline(response);
+      polygon = new Polygon(route.polyline)
+      route.displayRoute(response, true)
     }
   });
 };
 
-//'''''''''
 
-// function calcRoute() {
+Route.prototype.displayRoute = function(response, drawMe){
+  drawMe = typeof drawMe !== 'undefined' ? drawMe : true;
 
-//   var start = new google.maps.LatLng(41.953819, -87.654750); // Chicago
-//   var end = new google.maps.LatLng(38.637548, -90.205010); // St. Louis
-//   var waypts = [];
-//   var checkboxArray = document.getElementById('waypoints');
+  directionsDisplay.setDirections(response);
 
-//   for (var i = 0; i < checkboxArray.length; i++) {
-//     if (checkboxArray.options[i].selected == true) {
-//       waypts.push({
-//         location:checkboxArray[i].value,
-//         stopover:true});
-//     }
-//   }
-
-//   var request = {
-//     origin: start,
-//     destination: end,
-//     waypoints: waypts,
-//     optimizeWaypoints: true,
-//     travelMode: google.maps.TravelMode.DRIVING
-//   };
-
-//   directionsService.route(request, function(response, status){
-
-//     if (status == google.maps.DirectionsStatus.OK) {
-//       directionsDisplay.setDirections(response);
-
-//       var polyline = decodePolyline(response);
-//       var polygonGeoJsonObject = createPolygonFromPolyline(polyline);
-
-// // comment this line out to prevent drawing of polygon
-//       var polygonCoords = processPolygonCoordsIntoLatLong(polygonGeoJsonObject)
-//     }
-//   });
-// }
-
-//------------------------------------------------------------
-
-  // Define the LatLng coordinates for the polygon's path.
-function processPolygonCoordsIntoLatLong(polygonGeoJsonObject) {
-  var polygonCoords = createLatLongObjects(polygonGeoJsonObject);
-  drawPolygon(polygonCoords)
-  return polygonCoords
-
+  if (drawMe) {
+    drawer = new Drawer();
+    drawer.draw(polygon.geoJson);
+  };
 }
 
-function createLatLongObjects(geoJsonObject){
+
+//----polyline decoder-----
+
+var PolylineDecoder = function(response){}
+
+PolylineDecoder.prototype.decodePolyline = function(response){
+  var coord_array = polyline.decode(response.routes[0].overview_polyline);
+  return coord_array.map(function(coordinate) {
+    return [coordinate[1], coordinate[0]];
+  })
+}
+
+//-------Polygon!------------
+
+var Polygon = function(polyline){
+  this.geoJson = this.createGeoJsonFromPolyline(polyline)
+  this.searchWithin(this.geoJson)
+}
+
+Polygon.prototype.createGeoJsonFromPolyline = function(polyline) {
+  var line = {
+    type:"Feature",
+    geometry:{
+      type:"LineString",
+      coordinates: polyline
+     }
+   }
+
+  var polygon = turf.buffer(line, 25, 'miles')
+  return polygon
+}
+
+Polygon.prototype.searchWithin = function(polygon){
+  $.ajax({
+  url: '/maps/search',
+  type: 'post',
+  beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
+  contentType: "application/json",
+  dataType: "json",
+  data: JSON.stringify(polygon),
+})
+  .success(function(response){
+    loadMarkers(response.attractions)
+  })
+}
+
+//---------Draw-er---------------------
+var Drawer = function(){}
+
+Drawer.prototype.createLatLongObjects = function(geoJsonObject){
   var latLongArray = []
   var coordArray = geoJsonObject.features[0].geometry.coordinates[0]
 
-  console.log(coordArray)
-
   coordArray.forEach(function(coord){
-    console.log(coord)
     latLongArray.push(new google.maps.LatLng(coord[1], coord[0]))
     return latLongArray
   })
   return latLongArray
 }
 
-// // Construct the polygon.
-function drawPolygon(coordsToDraw){
-  bufferedPolygon = new google.maps.Polygon({
+Drawer.prototype.draw = function(geoJsonObject){
+  var coordsToDraw = this.createLatLongObjects(geoJsonObject)
+
+    bufferedPolygon = new google.maps.Polygon({
     paths: coordsToDraw,
     strokeColor: '#FF0000',
     strokeOpacity: 0.8,
@@ -137,63 +147,22 @@ function drawPolygon(coordsToDraw){
     fillOpacity: 0.35
   });
   bufferedPolygon.setMap(map);
+
 }
 
-//-------------------------------------------------------------
+//------------Markers----------------
 
-function decodePolyline(response) {
-  var coord_array = polyline.decode(response.routes[0].overview_polyline);
-  return coord_array.map(function(coordinate) {
-    return [coordinate[1], coordinate[0]];
-  })
-}
+function loadMarkers(attractions){
 
-function createPolygonFromPolyline(polyline) {
-  var line = {
-      type:"Feature",
-      geometry:{
-        type:"LineString",
-        coordinates: polyline,
-     },
-     properties:{}
-   }
-
-  var polygon = turf.buffer(line, 25, 'miles')
-
-  $.ajax({
-    url: '/maps/search',
-    type: 'post',
-    beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
-    contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify(polygon),
-  })
-  .success(function(response){
-    console.log(response.attractions)
-    loadMarkers(response.attractions)
-  })
-
-  return polygon
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-google.maps.event.addDomListener(window, "resize", function() {
-    var center = map.getCenter();
-    google.maps.event.trigger(map, "resize");
-    map.setCenter(center);
-  });
-
-function loadMarkers(markerObjects){
-
-    $.each(markerObjects, function(i,item){
+    $.each(attractions, function(i,item){
       loadMarker(item);
     });
   }
 
-function loadMarker(markerObject){
+function loadMarker(attraction){
 
-  var latitude = markerObject.longlat.coordinates[1];
-  var longitude = markerObject.longlat.coordinates[0];
+  var latitude = attraction.longlat.coordinates[1];
+  var longitude = attraction.longlat.coordinates[0];
   var coords = new google.maps.LatLng(latitude, longitude);
 
   var marker = new google.maps.Marker({
@@ -201,21 +170,33 @@ function loadMarker(markerObject){
     map: map
   });
 
-  addInfoWindow(markerObject, marker);
+  new InfoBox(attraction, marker)
 }
 
-function addInfoWindow(markerObject, marker){
-  var contentString = "<div>" +
-    '<p>' +
-    markerObject.name +
-    '</p>' +
-    '</div>';
+//-----------InfoBox----------------
+var InfoBox = function(attraction, marker){
+  this.contentString ='<div>' +
+                      '<p>' +
+                      attraction.name +
+                      '</p>' +
+                      '</div>',
+  this.popup = new google.maps.InfoWindow({content: this.contentString});
+  this.addClickListener(marker)
+}
 
-  var infoWindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-
+InfoBox.prototype.addClickListener = function(marker){
+  var myThis = this
   google.maps.event.addDomListener(marker, 'click', function(){
-    infoWindow.open(map, marker);
+    myThis.popup.open(map, marker);
   });
 }
+
+//------------misc DOM operations-------------------
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.event.addDomListener(window, "resize", function() {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
+  });
