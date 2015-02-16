@@ -22,7 +22,11 @@ class MapsController < ApplicationController
     render json: { attractions: @attractions }
   end
 
+  def directions
+  end
+
 end
+
 
 
 #from console this works: u.interests.each { |interest| p interest.attractions }
