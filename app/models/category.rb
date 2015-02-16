@@ -11,4 +11,5 @@ class Category
   belongs_to :users
 
   validates_presence_of :name, :subcategory_name, :code, :subcategory_code
+  validates_uniqueness_of :subcategory_code
 end

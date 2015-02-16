@@ -15,15 +15,11 @@ class Attraction
   validates_uniqueness_of :yelp_id
 
   def longitude
-    self.longlat.coordinates[0]
+    self.longlat['coordinates'][0]
   end
 
   def latitude
-    self.longlat.coordinates[1]
-  end
-
-  def coordinate_hash
-    { latitude: self.longlat.coordinates[1], longitude: self.longlat.coordinates[0] }
+    self.longlat['coordinates'][1]
   end
 
   def self.search_within(geometry)
