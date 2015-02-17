@@ -6,7 +6,7 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "Laika" %></title>
       <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=<%= j GOOGLE %>">
+    src="https://maps.googleapis.com/maps/api/js?key=<%= GOOGLE_KEY %>">
       </script>
     <%= stylesheet_link_tag    "application", media: 'all' %>
     <%= javascript_include_tag "vendor/modernizr" %>
