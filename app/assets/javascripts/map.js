@@ -1,4 +1,6 @@
 //= require polyline
+
+
 var map;
 
 var directionsService = new google.maps.DirectionsService();
@@ -14,32 +16,35 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
   directionsDisplay.setMap(map);
   route = new Route();
-  route.calculateRoute();
+  // route.calculateRoute();
 
 }
 
 //-------Route----------
 
-var Route = function(){
-  this.start = new google.maps.LatLng(41.953819, -87.654750), // Chicago for now
-  this.end = new google.maps.LatLng(38.637548, -90.205010), // St. Louis for now
-  this.waypts = this.getWaypoints();
+var Route = function(start, end, waypts){
+  this.start = start || new google.maps.LatLng(42.013157, -87.662274), // toughy
+  this.end = end || new google.maps.LatLng(41.709978, -87.589064), // pullman
+  this.waypts = waypts || []
+
+  this.calculateRoute();
 };
 
-Route.prototype.getWaypoints = function(){
-  var waypts = [];
-  var checkboxArray = document.getElementById('waypoints');
+// Route.prototype.getWaypoints = function(){
+//   var waypts = [];
+//   var checkboxArray = document.getElementById('waypoints');
 
-  for (var i = 0; i < checkboxArray.length; i++) {
-    if (checkboxArray.options[i].selected == true) {
-      waypts.push({
-        location: checkboxArray[i].value,
-        stopover: true});
-    }
-  }
+//   for (var i = 0; i < checkboxArray.length; i++) {
+//     if (checkboxArray.options[i].selected == true) {
+//       waypts.push({
+//         location: checkboxArray[i].value,
+//         stopover: true});
+//     }
+//   }
 
-  return waypts;
-};
+//   return waypts;
+
+// };
 
 Route.prototype.calculateRoute = function(){
   var request = {
@@ -49,7 +54,7 @@ Route.prototype.calculateRoute = function(){
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
-
+  console.log(this.waypts)
   directionsService.route(request, function(response, status){
     if (status == google.maps.DirectionsStatus.OK) {
 
@@ -169,7 +174,7 @@ function loadMarker(attraction){
   });
 
   new InfoBox(attraction, marker)
-  loadAttractionList(attraction, marker)
+  new Attraction(attraction, marker, route)
 }
 
 //-----------InfoBox----------------
