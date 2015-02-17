@@ -12,8 +12,12 @@ Attraction.prototype.init = function(){
 }
 
 Attraction.prototype.loadAttraction = function(){
-  var attractionInfo = this.buildAttractionInfo()
-  $('#attraction-list').append(attractionInfo);
+  var $attractionInfo = $(this.buildAttractionInfo());
+  // find the new #add button and bind a listener to it
+  $attractionInfo.data('attraction', this);
+
+  // actually add this to the dom now
+  $('#attraction-list').append($attractionInfo);
 };
 
 Attraction.prototype.buildAttractionInfo = function() {
@@ -26,7 +30,7 @@ Attraction.prototype.buildAttractionInfo = function() {
           '>',
           '<button id="add',
           this.attraction._id,
-          '">Add to Trip</button>',
+          '" class="add-button">Add to Trip</button>',
           '</li>'
          ].join('');
 
@@ -35,11 +39,6 @@ Attraction.prototype.buildAttractionInfo = function() {
 
 Attraction.prototype.setListeners = function(){
   var thisAttraction = this
-  $('#attraction-list').on('click', '#add' + this.attraction._id, function(event){
-    event.preventDefault();
-    console.log("You clicked me!")
-    thisAttraction.setAsWaypoint();
-  })
 }
 
 Attraction.prototype.setAsWaypoint = function(){
@@ -60,3 +59,12 @@ Attraction.prototype.setAsWaypoint = function(){
   console.log("now the waypoints are:")
   console.log(this.route.waypts)
 }
+
+$(function() {
+  $('#attraction-list').on('click', '.add-button', function(event){
+    event.preventDefault();
+    console.log("You clicked me!")
+    var thisAttraction = $(this).closest("li").data("attraction");
+    thisAttraction.setAsWaypoint();
+  });
+});
