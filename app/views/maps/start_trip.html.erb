@@ -1,0 +1,11 @@
+<div class="home_container">
+  <h1>Where can your interests take you?</h1>
+
+  <div class="small-4 small-centered columns get_route">
+    <%= form_for :map, :url => {action: 'display', controller: 'maps'}, method: 'POST', id:"calculate-route" do |f| %>
+    <%=f.text_field :from, :required => true, :placeholder => "Origin", :id => "from" %>
+    <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to" %>
+    <%=f.submit "Submit", :onclick => "calcRoute();" %>
+      <% end %>
+    </div>
+</div>
