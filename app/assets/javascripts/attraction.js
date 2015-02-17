@@ -2,6 +2,7 @@ var Attraction = function(attraction, marker){
   this.attraction = attraction,
   this.marker = marker,
   this.route = route,
+
   this.init();
 }
 
@@ -11,9 +12,7 @@ Attraction.prototype.init = function(){
 }
 
 Attraction.prototype.loadAttraction = function(){
-
   var attractionInfo = this.buildAttractionInfo()
-
   $('#attraction-list').append(attractionInfo);
 };
 
@@ -58,7 +57,6 @@ Attraction.prototype.setAsWaypoint = function(){
 
   this.route.calculateRoute();
 
-  console.log("all done!")
   console.log("now the waypoints are:")
   console.log(this.route.waypts)
 }
