@@ -1,0 +1,1 @@
+GOOGLE = YAML.load_file('config/google.yml')[Rails.env].with_indifferent_access['google_key'] if Rails.env.development?
