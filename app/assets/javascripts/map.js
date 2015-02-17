@@ -25,8 +25,8 @@ var MapObject = function(){
 //-------Route----------
 
 var Route = function(start, end, waypts){
-  this.start = start, // toughy
-  this.end = end, // pullman
+  this.start = start; // toughy
+  this.end = end; // pullman
   this.waypts = waypts || []
 
   this.calculateRoute();

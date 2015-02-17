@@ -1,6 +1,6 @@
 <script type="text/javascript">
-  var START = new google.maps.String(<%= @start %>);
-  var END = new google.maps.String(<%= @end %>);
+  var START = "<%= j @start %>";
+  var END = "<%= j @end %>";
 </script>
 
 <div id="map_canvas"></div>
