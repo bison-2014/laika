@@ -39,6 +39,25 @@ Attraction.prototype.buildAttractionInfo = function() {
 
 Attraction.prototype.setListeners = function(){
   var thisAttraction = this
+
+
+  $('#attraction-list').on('click', '#attraction' + this.attraction._id, function(event){
+    event.preventDefault();
+    thisAttraction.setListInteraction();
+  })
+
+
+  // $('#attraction-list').on('click', '#add' + this.attraction._id, function(event){
+  //     event.preventDefault();
+  //     thisAttraction.setAsWaypoint();
+  // })
+
+}
+
+Attraction.prototype.setListInteraction = function(){
+  // var thisAttraction = this;
+  var listItem = $('#attraction' + this.attraction._id);
+  $('#attraction-list').prepend(listItem);
 }
 
 Attraction.prototype.setAsWaypoint = function(){
@@ -63,7 +82,7 @@ Attraction.prototype.setAsWaypoint = function(){
 $(function() {
   $('#attraction-list').on('click', '.add-button', function(event){
     event.preventDefault();
-    console.log("You clicked me!")
+    // console.log("You clicked me!")
     var thisAttraction = $(this).closest("li").data("attraction");
     thisAttraction.setAsWaypoint();
   });
