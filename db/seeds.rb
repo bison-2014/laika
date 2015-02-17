@@ -59,7 +59,7 @@ def has_website?(business)
 end
 
 def seed_attractions
-  Location.where(city: 'Chicago').each do |location|
+  Location.all[0..10].each do |location|
     Category.each do |category|
 
       # check if you have already requested Yelp for this location and category
@@ -100,10 +100,10 @@ def seed_attractions
 end
 
 Yelp.client.configure do |config|
-  config.consumer_key = API_KEYS['yelp_consumer_key']
-  config.consumer_secret = API_KEYS['yelp_consumer_secret']
-  config.token = API_KEYS['yelp_token']
-  config.token_secret = API_KEYS['yelp_token_secret']
+  config.consumer_key = YELP['yelp_consumer_key']
+  config.consumer_secret = YELP['yelp_consumer_secret']
+  config.token = YELP['yelp_token']
+  config.token_secret = YELP['yelp_token_secret']
 end
 
 seed_locations

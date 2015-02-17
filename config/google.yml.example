@@ -1,0 +1,10 @@
+# Add your google API keys here here and save as "google.yml"
+
+development:
+  google_key:    'YOUR_KEY'
+
+test:
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
