@@ -13,7 +13,7 @@ function initialize() {
 
   directionsDisplay.setMap(mapObject.map);
 
-  route = new Route(START, END);
+  route = new Route(START, END, WAYPOINTS);
 }
 
 var MapObject = function(){
@@ -105,8 +105,6 @@ Polygon.prototype.searchWithin = function(polygon){
     data: JSON.stringify(polygon),
 })
   .success(function(response){
-    // console.log(response)
-    // loadMarkers(response.attractions)
     markerCollection = new MarkerCollection(response.attractions);
     markerCollection.loadMarkers()
   })

@@ -15,4 +15,12 @@
 //= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$( document ).ready(function() {
+  $(function(){ $(document).foundation(); });
+
+  $(".add_waypoint a").on("click", function(event){
+    event.preventDefault();
+
+    $("#new_waypoint").clone().appendTo(".waypoint_placeholder").show();
+    })
+});

@@ -4,8 +4,14 @@
   <div class="small-4 small-centered columns get_route">
     <%= form_for :map, :url => {action: 'display', controller: 'maps'}, method: 'POST', id:"calculate-route" do |f| %>
     <%=f.text_field :from, :required => true, :placeholder => "Origin", :id => "from" %>
+    <div class="waypoint_placeholder">
+      <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint" %></span>
+    </div>
     <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to" %>
-    <%=f.submit "Submit", :onclick => "calcRoute();" %>
+      <div class="small-8 columns add_waypoint">
+        <a href="#"><span>+</span> Add Waypoint</a>
+      </div><%=f.submit "Submit" %>
       <% end %>
     </div>
 </div>
+
