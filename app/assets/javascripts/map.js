@@ -1,23 +1,25 @@
 //= require polyline
 
-
-var map;
-
 var directionsService = new google.maps.DirectionsService();
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
 
-  var mapOptions = {
+  mapObject = new MapObject();
+
+  directionsDisplay.setMap(mapObject.map);
+
+  route = new Route();
+}
+
+var MapObject = function(){
+  this.mapOptions = {
     zoom: 4,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
+  this.map = new google.maps.Map(document.getElementById('map_canvas'), this.mapOptions);
 
-  map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-  directionsDisplay.setMap(map);
-  route = new Route();
-  // route.calculateRoute();
-
+  this.drawer = new Drawer();
 }
 
 //-------Route----------
@@ -30,22 +32,6 @@ var Route = function(start, end, waypts){
   this.calculateRoute();
 };
 
-// Route.prototype.getWaypoints = function(){
-//   var waypts = [];
-//   var checkboxArray = document.getElementById('waypoints');
-
-//   for (var i = 0; i < checkboxArray.length; i++) {
-//     if (checkboxArray.options[i].selected == true) {
-//       waypts.push({
-//         location: checkboxArray[i].value,
-//         stopover: true});
-//     }
-//   }
-
-//   return waypts;
-
-// };
-
 Route.prototype.calculateRoute = function(){
   var request = {
     origin: this.start,
@@ -54,7 +40,7 @@ Route.prototype.calculateRoute = function(){
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
-  console.log(this.waypts)
+
   directionsService.route(request, function(response, status){
     if (status == google.maps.DirectionsStatus.OK) {
 
@@ -67,17 +53,9 @@ Route.prototype.calculateRoute = function(){
 };
 
 
-Route.prototype.displayRoute = function(response, drawMe){
-  drawMe = typeof drawMe !== 'undefined' ? drawMe : true;
-
+Route.prototype.displayRoute = function(response){
   directionsDisplay.setDirections(response);
-
-  if (drawMe) {
-    drawer = new Drawer();
-    drawer.draw(polygon.geoJson);
-  };
 }
-
 
 //----polyline decoder-----
 
@@ -94,7 +72,10 @@ PolylineDecoder.prototype.decodePolyline = function(response){
 
 var Polygon = function(polyline){
   this.geoJson = this.createGeoJsonFromPolyline(polyline)
+
   this.searchWithin(this.geoJson)
+
+  mapObject.drawer.draw(this.geoJson);
 }
 
 Polygon.prototype.createGeoJsonFromPolyline = function(polyline) {
@@ -126,7 +107,13 @@ Polygon.prototype.searchWithin = function(polygon){
 }
 
 //---------Draw-er---------------------
-var Drawer = function(){}
+var Drawer = function(){
+  this.bufferedPolygon = new google.maps.Polygon({});
+
+  console.log("in Drawer.init...")
+  console.log("this.bufferedPolygon is ....")
+  console.log(this.bufferedPolygon)
+}
 
 Drawer.prototype.createLatLongObjects = function(geoJsonObject){
   var latLongArray = []
@@ -136,13 +123,16 @@ Drawer.prototype.createLatLongObjects = function(geoJsonObject){
     latLongArray.push(new google.maps.LatLng(coord[1], coord[0]))
     return latLongArray
   })
+
   return latLongArray
 }
 
 Drawer.prototype.draw = function(geoJsonObject){
-  var coordsToDraw = this.createLatLongObjects(geoJsonObject)
+  var coordsToDraw = this.createLatLongObjects(geoJsonObject);
 
-    bufferedPolygon = new google.maps.Polygon({
+  this.bufferedPolygon.setMap(null);
+
+    this.bufferedPolygon = new google.maps.Polygon({
     paths: coordsToDraw,
     strokeColor: '#FF0000',
     strokeOpacity: 0.8,
@@ -150,7 +140,8 @@ Drawer.prototype.draw = function(geoJsonObject){
     fillColor: '#FF0000',
     fillOpacity: 0.35
   });
-  bufferedPolygon.setMap(map);
+
+  this.bufferedPolygon.setMap(mapObject.map);
 
 }
 
@@ -170,7 +161,7 @@ function loadMarker(attraction){
 
   var marker = new google.maps.Marker({
     position: coords,
-    map: map
+    map: mapObject.map
   });
 
   new InfoBox(attraction, marker)
@@ -184,7 +175,7 @@ var InfoBox = function(attraction, marker){
                       attraction.name +
                       '</p>' +
                       '<p> Interest Areas: ' +
-                      // attraction.yelp_categories[0][0] +
+                      attraction.yelp_categories[0][0] +
                       '</p>' +
                       '<p> Rating: ' +
                       attraction.rating +
@@ -200,7 +191,7 @@ var InfoBox = function(attraction, marker){
 InfoBox.prototype.addClickListener = function(marker){
   var myThis = this
   google.maps.event.addDomListener(marker, 'click', function(){
-    myThis.popup.open(map, marker);
+    myThis.popup.open(mapObject.map, marker);
   });
 }
 
@@ -209,7 +200,7 @@ InfoBox.prototype.addClickListener = function(marker){
 google.maps.event.addDomListener(window, 'load', initialize);
 
 google.maps.event.addDomListener(window, "resize", function() {
-    var center = map.getCenter();
-    google.maps.event.trigger(map, "resize");
-    map.setCenter(center);
+    var center = mapObject.map.getCenter();
+    google.maps.event.trigger(mapObject.map, "resize");
+    mapObject.map.setCenter(center);
   });
