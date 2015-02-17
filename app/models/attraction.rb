@@ -31,7 +31,7 @@ class Attraction
                       "$geoWithin" => {
                           "$geometry" => geometry
                         }
-                      }).all.to_a#select { |attraction| (attraction.categories & interests).any? }
+                      }).all.to_a.select { |attraction| (attraction.categories & interests).any? }
   end
 
 end

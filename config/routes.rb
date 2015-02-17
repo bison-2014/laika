@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   resources :attractions, only: [:index]
 
-
-
   resources :home
 
   get '/users/profile' => 'users#profile', as: :users_profile
