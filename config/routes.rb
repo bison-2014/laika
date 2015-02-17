@@ -2,11 +2,14 @@ Rails.application.routes.draw do
 
   resources :attractions, only: [:index]
 
-  resources :users
+
 
   resources :home
 
-  get '/users/:id/categories' => 'users#travel_profile', as: :travel_profile
+  get '/users/profile' => 'users#profile', as: :users_profile
+  post '/users/profile' => 'users#update'
+
+  resources :users, only: [:new, :create]
 
   get "/log-in" => "sessions#new"
   post "/log-in" => "sessions#create"

@@ -7,5 +7,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def current_user_interests
+    @user_interests ||= self.current_user.interests
+  end
+
   helper_method :current_user
 end

@@ -1,5 +1,5 @@
 <% if current_user %>
-  <%= link_to 'Travel Profile', travel_profile_path(id: current_user.id.to_s) %>
+  <%= link_to 'Travel Profile', users_profile_path %>h
   <%= link_to 'Log Out', log_out_path %>
 <% else %>
   <%= link_to 'Log In', log_in_path  %>
