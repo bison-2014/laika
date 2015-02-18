@@ -1,5 +1,5 @@
 var App = App || {};
-App.Waypoints = []
+App.Waypoints = App.Waypoints || { items: [] }
 
 App.Attraction = function(attrData){
   this.attrData = attrData;
@@ -89,7 +89,15 @@ App.Attraction.prototype.setAsWaypoint = function(){
 
   route.calculateRoute();
 
-  App.Waypoints.push(this);
+  App.Waypoints.items.push(this);
+}
+
+App.Waypoints.getYelpData = function() {
+  yelps = [];
+  for(var i=0; i < this.items.length; ++i ) {
+    yelps.push(this.items[i].attrData);
+  }
+  return yelps;
 }
 
 // $(function() {

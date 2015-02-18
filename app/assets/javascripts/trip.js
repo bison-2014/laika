@@ -4,6 +4,7 @@ $(document).ready(function() {
     this.destination = route.end
     this.pitstop = route.pitstop
     this.map_waypoints = route.waypts
+    this.yelp_waypoints = App.Waypoints.getYelpData();
 
     console.log(this.map_waypoints)
   }

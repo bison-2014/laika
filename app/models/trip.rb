@@ -6,6 +6,7 @@ class Trip
   field :destination, type: Location
   field :pitstop, type: String
   field :map_waypoints, type: Array
+  field :yelp_waypoints, type: Array
 
   belongs_to :user
 
