@@ -1,7 +1,9 @@
-<% current_user.trips.each do |trip| %>
-  <p> Your Saved Trips:</p>
-  <p><a href=""><%= trip.origin %> --> <%= trip.destination %></a></p>
-  <p> With Pitstops In: <%= trip.map_waypoints %></p>
-<% end %>
+<div>
+  <h3> Your Saved Trips:</h3>
+  <% current_user.trips.each do |trip| %>
+    <p><a href=""><%= trip.origin %> --> <%= trip.destination %></a></p>
+    <p><%= trip.updated_at %></p>
+  <% end %>
+</div>
 
 <!-- need to add in specific link for that itinerary - pull it back to maps show page with the specific route -->
