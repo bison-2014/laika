@@ -16,18 +16,31 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @interests = Category.distinct(:name)
-    @user_interests = current_user.interests.distinct(:name)
+    arr = []
+    @all_categories = Category.each  { |cat| arr << cat }
+    @main_interests = arr.uniq { |cat| cat.name }
+
+    # @interests = Category.distinct(:subcategory_name)
+    # @interests = arr.uniq { |subcat| subcat.subcategory_name }
+    @user_interests = current_user.interests.distinct(:subcategory_name)
+
     render 'edit'
   end
 
   def update
-    @interests = Category.distinct(:name)
-    @user_interests = current_user.interests.distinct(:name)
+    p params
+    p "UUUUUUUSER PAAARRARARARARARARAMS"
+    p user_params[:interests]
+
+    # user_params[:interests]
+
+    # @main_interests = Category.distinct(:name)
+    # @interests = Category.distinct(:subcategory_name)
+    @user_interests = current_user.interests.distinct(:subcategory_name)
 
     current_user.update_attributes(password: user_params[:password],
                       password_confirmation: user_params[:password_confirmation])
-    current_user.interests = Category.in(name: user_params[:interests]).all.to_a
+    current_user.interests = Category.in(subcategory_name: user_params[:interests]).all.to_a
 
     if current_user.valid?
       current_user.save!
