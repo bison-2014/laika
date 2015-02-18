@@ -53,6 +53,17 @@ Route.prototype.calculateRoute = function(){
       route.polyline = decoder.decodePolyline(response);
       polygon = new Polygon(route.polyline)
             route.displayRoute(response, true)
+
+      var distance = 0;
+      var duration = 0;
+      response.routes[0].legs.forEach(function(leg) {
+        distance += leg.distance.value;
+        duration += leg.duration.value;
+
+      });
+      $('#distance-counter').text(Math.round(distance / 1609.34) + " miles")
+      $('#duration-counter').text(parseInt(duration / 3600) + " hours " + parseInt(duration / 60) + " minutes")
+      // var duration = response.routes[0].legs.
     }
   });
 };
