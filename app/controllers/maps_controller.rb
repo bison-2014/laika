@@ -3,8 +3,8 @@ class MapsController < ApplicationController
   respond_to :json
 
   def display
-    @start = params[:map][:from].to_s
-    @end = params[:map][:to].to_s
+    @start = params[:map][:from]
+    @end = params[:map][:to]
   end
 
   def start_trip

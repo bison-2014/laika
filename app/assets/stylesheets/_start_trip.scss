@@ -1,0 +1,58 @@
+.home_container {
+  width: 100%;
+  padding-bottom: 8%;
+  background-image: url(road.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.get_route {
+  padding: 4% 5% 5% 5%;
+}
+
+#new_waypoint {
+  display: none;
+}
+
+.fa {
+  color: black;
+  font-size: 4vw;
+}
+
+.full_width {
+  margin: 2%;
+}
+
+.full_width .how_to {
+  padding-left: 2%;
+  padding-right: 2%;
+  text-align: center;
+}
+
+#waypoint {
+  float: left;
+  display: inline-block;
+}
+
+#new_waypoint a {
+  font-size: 2vw;
+  font-weight: bold;
+  margin-left: 2%;
+  color: white;
+  display: inline-block;
+}
+
+.submit {
+  float: right;
+}
+
+.add_waypoint a {
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: white;
+}
+
+.white {
+  font-size: 1.5vw;
+  color: white;
+}

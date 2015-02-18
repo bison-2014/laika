@@ -13,7 +13,7 @@ function initialize() {
 
   directionsDisplay.setMap(mapObject.map);
 
-  route = new Route(START, END);
+  route = new Route(START, END, WAYPOINTS);
 }
 
 var MapObject = function(){
@@ -31,7 +31,7 @@ var MapObject = function(){
 var Route = function(start, end, waypts){
   this.start = start; // birmingham
   this.end = end; // pensacola
-  this.waypts = waypts || []
+  this.waypts = waypts || [];
 
   this.calculateRoute();
 }
@@ -40,7 +40,7 @@ Route.prototype.calculateRoute = function(){
   var request = {
     origin: this.start,
     destination: this.end,
-    waypoints: this.waypts,
+    waypoints: this.pitstop,
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
@@ -105,8 +105,6 @@ Polygon.prototype.searchWithin = function(polygon){
     data: JSON.stringify(polygon),
 })
   .success(function(response){
-    // console.log(response)
-    // loadMarkers(response.attractions)
     markerCollection = new MarkerCollection(response.attractions);
     markerCollection.loadMarkers()
   })
