@@ -31,19 +31,11 @@ App.Attraction.prototype.createListItem = function() {
 
 App.Attraction.prototype.buildListItem = function() {
 
-  var item = ['<li id="attraction',
-          this.attrData._id,
-          '">',
-          this.attrData.name,
-          '<a href="#"',
-          '>',
-          '<button id="add',
-          this.attrData._id,
-          '" class="add-button">Add to Trip</button>',
-          '</li>'
-         ].join('');
+  var li = $('<li>' + this.attrData.name + "</li>")
+  var add_button = $('<button class="add-button">Add to Trip</button>')
+  var close_button = $('<button class="remove-button">X</button>')
 
-  return item;
+  return li.append(add_button).append(close_button)
 }
 
 App.Attraction.prototype.setListItemListeners = function(){
@@ -63,6 +55,26 @@ App.Attraction.prototype.setListItemListeners = function(){
 
     self.$listItem.addClass('saved')
     self.setAsWaypoint();
+  });
+
+  // Set a listener that will handle list item "add button "
+  $(this.$listItem).on('click', '.remove-button', function(event) {
+    event.preventDefault();
+
+    // hide DOM element
+    self.$listItem.hide();
+
+    // hide marker object's marker
+    self.marker.marker.setMap(null);
+
+    // find index of the attraction if it is saved as a waypoint
+    var i = (App.Waypoints).indexOf(self);
+    if (i >= 0) {
+      route.waypts.splice(i, 1);
+      App.Waypoints.splice(i, 1);
+      route.calculateRoute();
+    }
+
   });
 }
 
