@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post "/log-in" => "sessions#create"
   get "/log-out" => "sessions#destroy", as: :log_out
 
+  resources :trips, only: [:create]
+
+
   get 'maps/start_trip' => 'maps#start_trip'
   post 'maps/display' => 'maps#display'
   post 'maps/search' => 'maps#search'
