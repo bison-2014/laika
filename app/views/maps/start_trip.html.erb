@@ -1,17 +1,26 @@
-<div class="home_container">
+<div class="small-12 home_container">
   <h1>Where can your interests take you?</h1>
 
   <div class="small-4 small-centered columns get_route">
     <%= form_for :map, :url => {action: 'display', controller: 'maps'}, method: 'POST', id:"calculate-route" do |f| %>
-    <%=f.text_field :from, :required => true, :placeholder => "Origin", :id => "from" %>
+    <%=f.text_field :from, :required => true, :placeholder => "Origin", :id => "from", :style=> 'width: 100%' %>
     <div class="waypoint_placeholder">
-      <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint" %></span>
+      <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint", :style=> 'width: 90%' %><span id="close_waypoint"><a href="#">X</a></span></span>
     </div>
-    <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to" %>
+    <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to", :style=> 'width: 100%' %>
       <div class="small-8 columns add_waypoint">
-        <a href="#"><span>+</span> Add Waypoint</a>
-      </div><%=f.submit "Submit" %>
+        <a href="#"><i class="fa fa-plus white"></i> Add Waypoint</a>
+      </div><%=f.submit "Submit", :class => "small button submit" %>
       <% end %>
     </div>
 </div>
-
+<div class="full_width">
+  <ul class="large-block-grid-5">
+    <li class="how_to"><i class="fa fa-road"></i><br>Art? Tacos? Elvis? Fill out your travel profile & tell us what you brake for. <br> <%= link_to "GET STARTED >", users_profile_path %> </li>
+    <li class="how_to"><i class="fa fa-map-marker"></i><br>Enter your origin & destination to get the quickest route from Point A to B.</li>
+    <li class="how_to"><i class="fa fa-camera-retro"></i><br>See points of interest along your route. Not just any interest, your interest.</li>
+    <li class="how_to"><i class="fa fa-plus"></i><br>Add Point X, Y, and Z to your trip and get new
+  recommendations as your route changes.</li>
+    <li class="how_to"><i class="fa fa-share"></i><br>Save and share your final trip!</li>
+  </ul>
+</div>

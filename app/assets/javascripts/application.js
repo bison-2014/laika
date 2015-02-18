@@ -18,9 +18,19 @@
 $( document ).ready(function() {
   $(function(){ $(document).foundation(); });
 
-  $(".add_waypoint a").on("click", function(event){
+  $("body").on("click", ".add_waypoint a", function(event){
     event.preventDefault();
 
-    $("#new_waypoint").clone().appendTo(".waypoint_placeholder").show();
+    $("#new_waypoint").show();
+
+    $(".add_waypoint a").hide();
     })
+
+  $("body").on("click", "#close_waypoint", function(event){
+    event.preventDefault();
+    $(".waypoint_placeholder").hide();
+    $(".add_waypoint a").show();
+    $(".waypoint_placeholder").append( $("#new_waypoint").hide() );
+    })
+
 });

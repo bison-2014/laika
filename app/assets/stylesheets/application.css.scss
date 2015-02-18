@@ -16,13 +16,16 @@
 
  */
 
+$sbutton_color: #d0d8c1;
+
 html body {
   width: 100%;
   height: 100%;
  }
 
 h1 {
-  padding: 5%;
+  padding: 2.5%;
+  font-size: 4vw;
 }
 
 .get_route {
@@ -37,3 +40,4 @@ h1 {
   margin: 0;
   padding: 0;
 }
+
