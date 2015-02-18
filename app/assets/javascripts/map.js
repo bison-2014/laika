@@ -29,8 +29,8 @@ var MapObject = function(){
 //-------Route----------
 
 var Route = function(start, end, waypts){
-  this.start = start; // birmingham
-  this.end = end; // pensacola
+  this.start = start;
+  this.end = end;
   this.waypts = waypts || [];
 
   this.calculateRoute();
