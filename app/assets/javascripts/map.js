@@ -40,10 +40,11 @@ Route.prototype.calculateRoute = function(){
   var request = {
     origin: this.start,
     destination: this.end,
-    waypoints: this.pitstop,
+    waypoints: this.waypts,
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.DRIVING
   };
+
 
   directionsService.route(request, function(response, status){
     if (status == google.maps.DirectionsStatus.OK) {
@@ -51,7 +52,7 @@ Route.prototype.calculateRoute = function(){
       decoder = new PolylineDecoder()
       route.polyline = decoder.decodePolyline(response);
       polygon = new Polygon(route.polyline)
-      route.displayRoute(response, true)
+            route.displayRoute(response, true)
     }
   });
 };
