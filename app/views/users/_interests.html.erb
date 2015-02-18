@@ -1,12 +1,15 @@
-<% @main_interests.each do |main_interest| %>
+<div class="small-12 large-5 columns interests">
+  <h3>Interests</h3>
+  <% @main_interests.each do |main_interest| %>
   <div class="category-main-name <%= main_interest %>">
     <h3><%= main_interest.name %></h3>
     <% interests = @all_categories.select { |cat| cat.name == main_interest.name } %>
     <!-- div below needs to be set to default hidden in CSS -->
-    <div class="subcategory-names <%= main_interest %>" style="display:none">
+    <div class="subcategory-names <%= main_interest %>">
       <% interests.each do |interest| %>
         <p><%= check_box_tag 'interests[]', interest.subcategory_name, @user_interests.include?(interest.subcategory_name), multiple: true %><%= interest.subcategory_name %></p>
       <% end %>
     </div>
   </div>
 <% end %>
+</div>

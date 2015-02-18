@@ -1,16 +1,81 @@
 #map_canvas {
   height: 100%;
-  width: 70%;
-  position: absolute;
   margin: 0;
   padding: 0;
 }
 
-#control_panel {
-  float: right;
-  width: 30%;
+#attractions_panel {
   text-align: left;
   padding-top: 20px;
   margin: 0;
   padding: 0;
+}
+
+#attractions_panel h3 {
+  padding: 3%;
+}
+
+#attraction-list {
+  list-style: none;
+  padding: 2%;
+  font-size: 1.5vw;
+}
+
+.add-button {
+  width: 40%;
+  height: 2%;
+  font-size: 1vw;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-left: 2%;
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  #attraction-list li{
+    list-style: none;
+    padding: 2%;
+    font-size: 3vw;
+  }
+
+  .add-button {
+    width: 20%;
+    height: 2%;
+    font-size: 2vw;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 2%;
+  }
+
+  #attractions_panel h3 {
+    padding: 3%;
+    font-size: 6vw;
+  }
+
+  .fa {
+    font-size: 2vw;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+
+  #attraction-list li{
+    list-style: none;
+    padding: 2%;
+    font-size: 4vw;
+  }
+
+  .add-button {
+    width: 30%;
+    height: 2%;
+    font-size: 3vw;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 2%;
+  }
+
+  #attractions_panel h3 {
+    padding: 3%;
+    font-size: 6vw;
+  }
+
 }

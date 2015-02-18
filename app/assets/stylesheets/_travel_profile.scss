@@ -1,0 +1,39 @@
+.bar {
+  background-color: #556b69;
+  height: 12%;
+  margin: -1% -2% 2% -2%;
+  padding: 2%;
+}
+
+.bar h2 {
+  text-align: center;
+  color: white;
+}
+
+.interests {
+  border: 1px solid #a8beae;
+  border-radius: 10px;
+  margin: 0 4% 2% 4%;
+  padding-left: 2%;
+}
+
+.change_password {
+  display: none;
+  background-color: #afc2ab;
+  padding: 2% 10% 2% 10%;
+}
+
+.change_password input[type=password] {
+  width: 50%;
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
+.manage_account a {
+  margin-left: 3%;
+  margin-right: -2%;
+}
+
+.subcategory-names {
+  display: none;
+}

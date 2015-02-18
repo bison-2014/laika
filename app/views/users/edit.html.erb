@@ -1,22 +1,36 @@
-<h2>User Profile</h2>
+<div class="full_width bar">
+  <h2>My Travel Profile</h2>
+</div>
 
-<%= form_tag users_profile_path, method: :post do |f| %>
-
-  <div class='success'><%= "Profile updated." if success? %></div>
+<div class="small-12 small-centered columns profile">
 
   <%= render partial: 'interests' %>
 
-  <p>Change my password</p>
-
-  Password:          <%= password_field_tag :password %><br>
-  Confirm Password:  <%= password_field_tag :password_confirmation %><br>
-
-  <div class='errors'>
-      <%= "Passwords do not match." if errors.include? :password_confirmation %>
-  </div>
-
-  <%= submit_tag "Update" %>
-
   <%= render partial: 'user_trips' %>
 
-<% end %>
+  <div class="small-12 large-12 columns manage_account">
+    <h3>Manage Account</h3><br>
+
+    <a href="#", class="submit">Update Password</a>
+
+    <div class="small-6 columns change_password">
+      <%= form_tag users_profile_path, method: :post do |f| %>
+
+        <div class='success'><%= "Profile updated." if success? %></div>
+
+        <p>Change my password</p>
+
+        New Password: <%= password_field_tag :password %><br>
+        Confirm Password: <%= password_field_tag :password_confirmation %><br>
+
+        <div class='errors'>
+            <%= "Passwords do not match." if errors.include? :password_confirmation %>
+        </div>
+
+        <%= submit_tag "Update", :class => "submit" %>
+
+      <% end %>
+    </div>
+        <a href="#", class="submit">Delete Account</a>
+  </div>
+</div>
