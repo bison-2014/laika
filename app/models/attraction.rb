@@ -36,6 +36,4 @@ class Attraction
 
 end
 
-# { "type" => "Polygon", "coordinates" => [[[0.0, 0.0], [-90.0, 0.0], [-90.0, 50.0], [0.0, 50.0], [0.0, 0.0]]] }
-
 

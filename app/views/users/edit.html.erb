@@ -1,0 +1,20 @@
+<h2>User Profile</h2>
+
+<%= form_tag users_profile_path, method: :post do |f| %>
+
+  <div class='success'><%= "Profile updated." if success? %></div>
+
+  <%= render partial: 'interests' %>
+
+  <p>Change my password</p>
+
+  Password:          <%= password_field_tag :password %><br>
+  Confirm Password:  <%= password_field_tag :password_confirmation %><br>
+
+  <div class='errors'>
+      <%= "Passwords do not match." if errors.include? :password_confirmation %>
+  </div>
+
+  <%= submit_tag "Update" %>
+
+<% end %>

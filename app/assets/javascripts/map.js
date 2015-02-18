@@ -1,5 +1,9 @@
 //= require polyline
 
+
+
+//-------
+
 var directionsService = new google.maps.DirectionsService();
 
 function initialize() {
@@ -9,7 +13,7 @@ function initialize() {
 
   directionsDisplay.setMap(mapObject.map);
 
-  route = new Route();
+  route = new Route(START, END);
 }
 
 var MapObject = function(){
@@ -25,12 +29,12 @@ var MapObject = function(){
 //-------Route----------
 
 var Route = function(start, end, waypts){
-  this.start = start || new google.maps.LatLng(42.013157, -87.662274), // toughy
-  this.end = end || new google.maps.LatLng(41.709978, -87.589064), // pullman
+  this.start = start; // birmingham
+  this.end = end; // pensacola
   this.waypts = waypts || []
 
   this.calculateRoute();
-};
+}
 
 Route.prototype.calculateRoute = function(){
   var request = {
@@ -93,26 +97,24 @@ Polygon.prototype.createGeoJsonFromPolyline = function(polyline) {
 
 Polygon.prototype.searchWithin = function(polygon){
   $.ajax({
-  url: '/maps/search',
-  type: 'post',
-  beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
-  contentType: "application/json",
-  dataType: "json",
-  data: JSON.stringify(polygon),
+    url: '/maps/search',
+    type: 'post',
+    beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name=csrf-token]').attr('content'))},
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(polygon),
 })
   .success(function(response){
-    console.log(response)
-    loadMarkers(response.attractions)
+    // console.log(response)
+    // loadMarkers(response.attractions)
+    markerCollection = new MarkerCollection(response.attractions);
+    markerCollection.loadMarkers()
   })
 }
 
 //---------Draw-er---------------------
 var Drawer = function(){
   this.bufferedPolygon = new google.maps.Polygon({});
-
-  console.log("in Drawer.init...")
-  console.log("this.bufferedPolygon is ....")
-  console.log(this.bufferedPolygon)
 }
 
 Drawer.prototype.createLatLongObjects = function(geoJsonObject){
@@ -133,12 +135,12 @@ Drawer.prototype.draw = function(geoJsonObject){
   this.bufferedPolygon.setMap(null);
 
     this.bufferedPolygon = new google.maps.Polygon({
-    paths: coordsToDraw,
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35
+      paths: coordsToDraw,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35
   });
 
   this.bufferedPolygon.setMap(mapObject.map);
@@ -147,53 +149,54 @@ Drawer.prototype.draw = function(geoJsonObject){
 
 //------------Markers----------------
 
-function loadMarkers(attractions){
-    $.each(attractions, function(i,item){
-      loadMarker(item);
-    });
-  }
+// function loadMarkers(attractions){
+//     $.each(attractions, function(i,item){
+//       loadMarker(item);
+//     });
+//   }
 
-function loadMarker(attraction){
+// function loadMarker(attraction){
 
-  var latitude = attraction.longlat.coordinates[1];
-  var longitude = attraction.longlat.coordinates[0];
-  var coords = new google.maps.LatLng(latitude, longitude);
+//   var latitude = attraction.longlat.coordinates[1];
+//   var longitude = attraction.longlat.coordinates[0];
+//   var coords = new google.maps.LatLng(latitude, longitude);
 
-  var marker = new google.maps.Marker({
-    position: coords,
-    map: mapObject.map
-  });
+//   var marker = new google.maps.Marker({
+//     position: coords,
+//     map: mapObject.map
+//   });
 
-  new InfoBox(attraction, marker)
-  new Attraction(attraction, marker, route)
-}
+//   // new InfoBox(attraction, marker)
+//   new Attraction(attraction, marker, route)
+// }
 
 //-----------InfoBox----------------
-var InfoBox = function(attraction, marker){
-  this.contentString ='<div>' +
-                      '<p>' +
-                      attraction.name +
-                      '</p>' +
-                      '<p> Interest Areas: ' +
-                      attraction.yelp_categories[0][0] +
-                      '</p>' +
-                      '<p> Rating: ' +
-                      attraction.rating +
-                      '</p>' +
-                      '<p> Number of Reviews: ' +
-                      attraction.review_count +
-                      '</p>' +
-                      '</div>',
-  this.popup = new google.maps.InfoWindow({content: this.contentString});
-  this.addClickListener(marker)
-}
 
-InfoBox.prototype.addClickListener = function(marker){
-  var myThis = this
-  google.maps.event.addDomListener(marker, 'click', function(){
-    myThis.popup.open(mapObject.map, marker);
-  });
-}
+// var InfoBox = function(attraction, marker){
+//   this.contentString ='<div>' +
+//                       '<p>' +
+//                       attraction.name +
+//                       '</p>' +
+//                       '<p> Interest Areas: ' +
+//                       attraction.yelp_categories[0][0] +
+//                       '</p>' +
+//                       '<p> Rating: ' +
+//                       attraction.rating +
+//                       '</p>' +
+//                       '<p> Number of Reviews: ' +
+//                       attraction.review_count +
+//                       '</p>' +
+//                       '</div>',
+//   this.popup = new google.maps.InfoWindow({content: this.contentString});
+//   this.addClickListener(marker)
+// }
+
+// InfoBox.prototype.addClickListener = function(marker){
+//   var myThis = this
+//   google.maps.event.addDomListener(marker, 'click', function(){
+//     myThis.popup.open(mapObject.map, marker);
+//   });
+// }
 
 //------------misc DOM operations-------------------
 

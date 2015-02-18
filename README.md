@@ -18,4 +18,5 @@ https://bison-laika.herokuapp.com
 - Sign up as a new user
 - Set your origin and destination
 - Fill out your interests and what you'd like to see on a road trip
+- Add any fun attractions or cities to visit along the way, see your route dynamically change
 - Hit the road!

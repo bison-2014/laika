@@ -1,0 +1,3 @@
+<% @interests.each do |interest| %>
+  <p><%= check_box_tag 'interests[]', interest, @user_interests.include?(interest), multiple: true %><%= interest %></p>
+<% end %>

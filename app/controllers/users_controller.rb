@@ -10,17 +10,39 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id.to_s
       redirect_to root_path
     else
+      flash.now[:errors] = @user.errors
       render 'new'
     end
   end
 
-  def travel_profile
-    @user = current_user
+  def profile
+    @interests = Category.distinct(:name)
+    @user_interests = current_user.interests.distinct(:name)
+    render 'edit'
+  end
+
+  def update
+    @interests = Category.distinct(:name)
+    @user_interests = current_user.interests.distinct(:name)
+
+    current_user.update_attributes(password: user_params[:password],
+                      password_confirmation: user_params[:password_confirmation])
+    current_user.interests = Category.in(name: user_params[:interests]).all.to_a
+
+    if current_user.valid?
+      current_user.save!
+      flash[:success] = true
+      redirect_to users_profile_path
+    else
+      flash.now[:errors] = current_user.errors
+      render 'edit'
+    end
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.permit(:name, :email, :password, :password_confirmation, :'interests' => [])
   end
 
 end

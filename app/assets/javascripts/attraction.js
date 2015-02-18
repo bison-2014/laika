@@ -1,4 +1,4 @@
-var Attraction = function(attraction, marker){
+var Attraction = function(attraction, marker, route){
   this.attraction = attraction,
   this.marker = marker,
   this.route = route,
@@ -12,8 +12,11 @@ Attraction.prototype.init = function(){
 }
 
 Attraction.prototype.loadAttraction = function(){
-  var attractionInfo = this.buildAttractionInfo()
-  $('#attraction-list').append(attractionInfo);
+  var $attractionInfo = $(this.buildAttractionInfo());
+
+  $attractionInfo.data('attraction', this);
+
+  $('#attraction-list').append($attractionInfo);
 };
 
 Attraction.prototype.buildAttractionInfo = function() {
@@ -26,7 +29,7 @@ Attraction.prototype.buildAttractionInfo = function() {
           '>',
           '<button id="add',
           this.attraction._id,
-          '">Add to Trip</button>',
+          '" class="add-button">Add to Trip</button>',
           '</li>'
          ].join('');
 
@@ -35,20 +38,24 @@ Attraction.prototype.buildAttractionInfo = function() {
 
 Attraction.prototype.setListeners = function(){
   var thisAttraction = this
-  $('#attraction-list').on('click', '#add' + this.attraction._id, function(event){
+
+
+  $('#attraction-list').on('click', '#attraction' + this.attraction._id, function(event){
     event.preventDefault();
-    console.log("You clicked me!")
-    thisAttraction.setAsWaypoint();
+    thisAttraction.setListInteraction();
   })
 }
 
+
+Attraction.prototype.setListInteraction = function(){
+  var listItem = $('#attraction' + this.attraction._id);
+  $('#attraction-list').prepend(listItem);
+}
+
 Attraction.prototype.setAsWaypoint = function(){
-  console.log("setting a waypoint!")
 
   var lng = this.attraction.longlat.coordinates[0]
-
   var lat = this.attraction.longlat.coordinates[1]
-
   var coords = new google.maps.LatLng(lat, lng)
 
   this.route.waypts.push({
@@ -56,7 +63,14 @@ Attraction.prototype.setAsWaypoint = function(){
         stopover: true});
 
   this.route.calculateRoute();
-
-  console.log("now the waypoints are:")
-  console.log(this.route.waypts)
 }
+
+$(function() {
+  $('#attraction-list').on('click', '.add-button', function(event){
+    event.preventDefault();
+
+    var thisAttraction = $(this).closest("li").data("attraction");
+    thisAttraction.setAsWaypoint();
+  });
+
+});

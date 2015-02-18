@@ -1,0 +1,37 @@
+city,dma_code,latitude,longitude,region,slug
+Boise,757,43.613739,-116.237651,ID,boise-id
+Pocatello,758,42.8713032,-112.4455344,ID,pocatello-id
+Twin Falls,760,42.5629668,-114.4608711,ID,twin-falls-id
+Chicago,602,41.850033,-87.6500523,IL,chicago-il
+Rockford,610,42.2711311,-89.0939952,IL,rockford-il
+Mankato,737,44.1635775,-93.9993996,MN,mankato-mn
+St. Paul,613,44.944167,-93.086075,MN,st-paul-mn
+Billings,756,45.7832856,-108.5006904,MT,billings-mt
+Bozeman,754,45.68346,-111.050499,MT,bozeman-mt
+Glendive,798,47.108491,-104.710419,MT,glendive-mt
+Great Falls,755,47.5002354,-111.3008083,MT,great-falls-mt
+Helena,766,46.595805,-112.027031,MT,helena-mt
+Missoula,762,46.872146,-113.9939982,MT,missoula-mt
+Valley City,724,46.9233129,-98.0031547,ND,valley-city-nd
+Dickinson,687,46.8791756,-102.7896242,ND,dickinson-nd
+Williston,687,48.1469683,-103.6179745,ND,williston-nd
+Bend,821,44.0581728,-121.3153096,OR,bend-or
+Eugene,801,44.0520691,-123.0867536,OR,eugene-or
+Klamath Falls,813,42.224867,-121.7816704,OR,klamath-falls-or
+Portland,820,45.5234515,-122.6762071,OR,portland-or
+Rapid City,764,44.0805434,-103.2310149,SD,rapid-city-sd
+Sioux Falls,725,43.5499749,-96.700327,SD,sioux-falls-sd
+Mitchell,725,43.7094283,-98.0297992,SD,mitchell-sd
+Salt Lake City,770,40.7607793,-111.8910474,UT,salt-lake-city-ut
+Tacoma,819,47.2528768,-122.4442906,WA,tacoma-wa
+Spokane,881,47.6587802,-117.4260466,WA,spokane-wa
+Kennewick,810,46.2112458,-119.1372338,WA,kennewick-wa
+Superior,676,46.7207737,-92.1040796,WI,superior-wi
+Appleton,658,44.2619309,-88.4153847,WI,appleton-wi
+Eau Claire,702,44.811349,-91.4984941,WI,eau-claire-wi
+Madison,669,43.0730517,-89.4012302,WI,madison-wi
+Milwaukee,617,43.0389025,-87.9064736,WI,milwaukee-wi
+Rhinelander,705,45.6366228,-89.4120753,WI,rhinelander-wi
+Riverton,767,43.0249592,-108.3801036,WY,riverton-wy
+Seattle,819,45.0452779,-107.1588831,WA,seattle-wa
+Minneapolis,613,44.970697,-93.2614785,MN,minneapolis-mn
