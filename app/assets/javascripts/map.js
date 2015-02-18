@@ -106,8 +106,7 @@ Polygon.prototype.searchWithin = function(polygon){
     data: JSON.stringify(polygon),
 })
   .success(function(response){
-    markerCollection = new MarkerCollection(response.attractions);
-    markerCollection.loadMarkers()
+    App.AttractionCollection.add(response.attractions);
   })
 }
 
@@ -145,6 +144,7 @@ Drawer.prototype.draw = function(geoJsonObject){
   this.bufferedPolygon.setMap(mapObject.map);
 
 }
+
 
 //------------Markers----------------
 

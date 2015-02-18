@@ -75,9 +75,8 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      uri: <%= ENV['MONGOLAB_URI'] %>
       options:
-        consistency: :strong
         max_retries: 1
         retry_interval: 0
   options:
