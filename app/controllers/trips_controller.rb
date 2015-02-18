@@ -7,14 +7,10 @@ class TripsController < ApplicationController
     render json: { status: true }
   end
 
-  # def find_waypoint_attraction
-  #   Attraction.where(latitude: @trip.map_waypoints.location.k && longitude: @trip.map_waypoints.location.D)
-  # end
-
   private
 
   def trip_params
-    params.require(:trip).permit(:origin, :destination, :pitstop)
+    params.require(:trip).permit(:origin, :destination, :pitstop, {:map_waypoints => [{:location => [:k, :D]}, :stopover]})
   end
 
 end
