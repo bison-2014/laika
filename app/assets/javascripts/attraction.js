@@ -26,9 +26,8 @@ App.Attraction.prototype.createListItem = function() {
     // apend to the end of the list
     $('#attraction-list').append(this.$listItem);
 
-    // listen for clicks
     this.setListItemListeners();
-}
+  }
 
 App.Attraction.prototype.buildListItem = function() {
 
@@ -71,6 +70,7 @@ App.Attraction.prototype.onMarkerClicked = function() {
   // move the list item to top
   this.$listItem.remove();
   $('#attraction-list').prepend(this.$listItem);
+  this.setListItemListeners()
 
   // set clicked list-item to active state
   $('li.active').removeClass('active')
@@ -79,7 +79,6 @@ App.Attraction.prototype.onMarkerClicked = function() {
 }
 
 App.Attraction.prototype.setAsWaypoint = function(){
-
   var lng = this.attrData.longlat.coordinates[0]
   var lat = this.attrData.longlat.coordinates[1]
   var coords = new google.maps.LatLng(lat, lng)
