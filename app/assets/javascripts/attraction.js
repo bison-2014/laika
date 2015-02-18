@@ -68,7 +68,7 @@ App.Attraction.prototype.setListItemListeners = function(){
     self.marker.marker.setMap(null);
 
     // find index of the attraction if it is saved as a waypoint
-    var i = (App.Waypoints).indexOf(self);
+    var i = App.Waypoints.items.indexOf(self);
     if (i >= 0) {
       route.waypts.splice(i, 1);
       App.Waypoints.splice(i, 1);
