@@ -3,6 +3,9 @@ $(document).ready(function() {
     this.origin = route.start
     this.destination = route.end
     this.pitstop = route.pitstop
+    this.map_waypoints = route.waypts
+
+    console.log(this.map_waypoints)
   }
 
   $('#save-trip-button').click(function(event){
