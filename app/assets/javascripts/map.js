@@ -13,7 +13,7 @@ function initialize() {
 
   directionsDisplay.setMap(mapObject.map);
 
-  route = new Route(START, END, PITSTOP);
+  route = new Route(START, END, WAYPOINTS);
 }
 
 var MapObject = function(){

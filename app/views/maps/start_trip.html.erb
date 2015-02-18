@@ -5,7 +5,7 @@
     <%= form_for :map, :url => {action: 'display', controller: 'maps'}, method: 'POST', id:"calculate-route" do |f| %>
     <%=f.text_field :from, :required => true, :placeholder => "Origin", :id => "from", :style=> 'width: 100%' %>
     <div class="waypoint_placeholder">
-      <span id="new_waypoint"><%=f.text_field :pitstop, :required => false, :placeholder => "Add a Stop", :id => "pitstop", :style=> 'width: 85%' %><span id="close_waypoint"><a href="#">X</a></span></span>
+      <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint", :style=> 'width: 85%' %><span id="close_waypoint"><a href="#">X</a></span></span>
     </div>
     <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to", :style=> 'width: 100%' %>
       <div class="small-8 columns add_waypoint">
