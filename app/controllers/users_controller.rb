@@ -28,14 +28,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p params
-    p "UUUUUUUSER PAAARRARARARARARARAMS"
-    p user_params[:interests]
-
-    # user_params[:interests]
-
-    # @main_interests = Category.distinct(:name)
-    # @interests = Category.distinct(:subcategory_name)
     @user_interests = current_user.interests.distinct(:subcategory_name)
 
     current_user.update_attributes(password: user_params[:password],
