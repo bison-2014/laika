@@ -10,7 +10,8 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:origin, :destination, :pitstop, {:map_waypoints => [{:location => [:k, :D]}, :stopover]})
+    params.require(:trip).permit(:origin, :destination, :pitstop, {:map_waypoints => [{:location => [:k, :D]}, :stopover]}, :yelp_waypoints)
   end
 
 end
+
