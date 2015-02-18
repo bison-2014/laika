@@ -1,7 +1,9 @@
-<% if current_user %>
-  <%= link_to 'Travel Profile', users_profile_path %>h
-  <%= link_to 'Log Out', log_out_path %>
-<% else %>
-  <%= link_to 'Log In', log_in_path  %>
-  <%= link_to 'Sign Up', new_user_path %>
-<% end %>
+<div class="header_links">
+  <% if current_user %>
+    <li><%= link_to 'Travel Profile', users_profile_path %></li>
+    <li><%= link_to 'Log Out', log_out_path %></li>
+  <% else %>
+    <li><%= link_to 'Log In', log_in_path  %></li>
+    <li><%= link_to 'Sign Up', new_user_path %></li>
+  <% end %>
+</div>
