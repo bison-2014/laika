@@ -29,9 +29,6 @@ class UsersController < ApplicationController
 
   def update
     @user_interests = current_user.interests.distinct(:subcategory_name)
-
-    current_user.update_attributes(password: user_params[:password],
-                      password_confirmation: user_params[:password_confirmation])
     current_user.interests = Category.in(subcategory_name: user_params[:interests]).all.to_a
 
     if current_user.valid?

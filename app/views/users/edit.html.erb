@@ -4,33 +4,22 @@
 
 <div class="small-12 small-centered columns profile">
 
-  <%= render partial: 'interests' %>
+  <div class="small-12 large-5 columns interests">
 
-  <%= render partial: 'user_trips' %>
+  <h3>Interests</h3>
 
-  <div class="small-12 large-12 columns manage_account">
-    <h3>Manage Account</h3><br>
+    <%= form_tag users_profile_path, method: :post do |f| %>
 
-    <a href="#", class="submit">Update Password</a>
+      <div class='success'><%= "Profile updated." if success? %></div>
 
-    <div class="small-6 columns change_password">
-      <%= form_tag users_profile_path, method: :post do |f| %>
+      <%= render partial: 'interests' %>
 
-        <div class='success'><%= "Profile updated." if success? %></div>
+      <%= submit_tag "Update", :class => "submit"  %>
 
-        <p>Change my password</p>
+    <% end %>
 
-        New Password: <%= password_field_tag :password %><br>
-        Confirm Password: <%= password_field_tag :password_confirmation %><br>
-
-        <div class='errors'>
-            <%= "Passwords do not match." if errors.include? :password_confirmation %>
-        </div>
-
-        <%= submit_tag "Update", :class => "submit" %>
-
-      <% end %>
-    </div>
-        <a href="#", class="submit">Delete Account</a>
   </div>
+
+<%= render partial: 'user_trips'%>
+
 </div>
