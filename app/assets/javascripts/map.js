@@ -13,7 +13,13 @@ function initialize() {
 
   directionsDisplay.setMap(mapObject.map);
 
-  route = new Route(START, END, WAYPOINTS);
+  // add a waypoint if it's necessary
+  // if (PITSTOP) {
+  //   route.waypts.push({
+  //       location: coords,
+  //       stopover: true});
+  // }
+  route = new Route(START, END);
 }
 
 var MapObject = function(){
@@ -37,6 +43,26 @@ var Route = function(start, end, waypts){
 }
 
 Route.prototype.calculateRoute = function(){
+  var waypts = []
+  if (PITSTOP) {
+    waypts.push({
+        location: PITSTOP,
+        stopover: true,
+    })
+  }
+
+  App.Waypoints.items.forEach(function(waypoint) {
+    var lng = waypoint.attrData.longlat.coordinates[0];
+    var lat = waypoint.attrData.longlat.coordinates[1];
+    var coords = new google.maps.LatLng(lat, lng);
+
+    waypts.push({
+        location: coords,
+        stopover: true,
+    });
+  });
+  this.waypts = waypts;
+
   var request = {
     origin: this.start,
     destination: this.end,
@@ -59,11 +85,9 @@ Route.prototype.calculateRoute = function(){
       response.routes[0].legs.forEach(function(leg) {
         distance += leg.distance.value;
         duration += leg.duration.value;
-
       });
       $('#distance-counter').text(Math.round(distance / 1609.34) + " miles")
       $('#duration-counter').text(parseInt(duration / 3600) + " hours " + parseInt(duration / 60) + " minutes")
-      // var duration = response.routes[0].legs.
     }
   });
 };
@@ -71,6 +95,19 @@ Route.prototype.calculateRoute = function(){
 
 Route.prototype.displayRoute = function(response){
   directionsDisplay.setDirections(response);
+}
+
+Route.prototype.addWaypoint = function(attraction) {
+  App.Waypoints.items.push(attraction);
+  route.calculateRoute();
+}
+
+Route.prototype.removeWaypoint = function(attraction) {
+    var index = App.Waypoints.items.indexOf(attraction);
+    if (index >= 0) {
+      App.Waypoints.items.splice(index, 1);
+      route.calculateRoute();
+    }
 }
 
 //----polyline decoder-----
