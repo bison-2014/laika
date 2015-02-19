@@ -54,7 +54,7 @@ App.Attraction.prototype.setListItemListeners = function(){
     event.preventDefault();
 
     self.$listItem.addClass('saved')
-    self.setAsWaypoint();
+    route.addWaypoint(self);
   });
 
   // Set a listener that will handle list item "add button "
@@ -68,13 +68,7 @@ App.Attraction.prototype.setListItemListeners = function(){
     self.marker.marker.setMap(null);
 
     // find index of the attraction if it is saved as a waypoint
-    var i = App.Waypoints.items.indexOf(self);
-    if (i >= 0) {
-      route.waypts.splice(i, 1);
-      App.Waypoints.splice(i, 1);
-      route.calculateRoute();
-    }
-
+    route.removeWaypoint(self);
   });
 }
 
@@ -88,20 +82,6 @@ App.Attraction.prototype.onMarkerClicked = function() {
   $('li.active').removeClass('active')
   this.$listItem.addClass('active')
   // this.$listItem.css('background-color', 'purple')
-}
-
-App.Attraction.prototype.setAsWaypoint = function(){
-  var lng = this.attrData.longlat.coordinates[0]
-  var lat = this.attrData.longlat.coordinates[1]
-  var coords = new google.maps.LatLng(lat, lng)
-
-  route.waypts.push({
-        location: coords,
-        stopover: true});
-
-  route.calculateRoute();
-
-  App.Waypoints.items.push(this);
 }
 
 App.Waypoints.getYelpData = function() {
