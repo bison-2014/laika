@@ -1,0 +1,46 @@
+name,code,subcategory_name,subcategory_code
+Arts & Entertainment,arts,Arcades,arcades
+Arts & Entertainment,arts,Art Galleries,galleries
+Arts & Entertainment,arts,Botanical Gardens,gardens
+Arts & Entertainment,arts,Casinos,casinos
+Arts & Entertainment,arts,Cultural Center,culturalcenter
+Arts & Entertainment,arts,Museums,museums
+Arts & Entertainment,arts,Music Venues,musicvenues
+Arts & Entertainment,arts,Performing Arts,theater
+Arts & Entertainment,arts,Wineries,wineries
+Active Life,active,ATV Rentals/Tours,atvrentals
+Active Life,active,Amusement Parks,amusementparks
+Active Life,active,Beaches,beaches
+Active Life,active,Bike Rentals,bikerentals
+Active Life,active,Boating,boating
+Active Life,active,Climbing,climbing
+Active Life,active,Fishing,fishing
+Active Life,active,Gun/Rifle Ranges,gun_ranges
+Active Life,active,Hiking,hiking
+Active Life,active,Horseback Riding,horsebackriding
+Active Life,active,Lakes,lakes
+Active Life,active,Mini Golf,mini_golf
+Active Life,active,Mountain Biking,mountainbiking
+Active Life,active,Paintball,paintball
+Active Life,active,Parks,parks
+Active Life,active,Dog Parks,dog_parks
+Active Life,active,Rafting/Kayaking,rafting
+Active Life,active,Rock Climbing,rock_climbing
+Active Life,active,Zoos,zoos
+Hotels & Travel,hotelstravel,Tours,tours
+Hotels & Travel,hotelstravel,Art Tours,arttours
+Hotels & Travel,hotelstravel,Bus Tours,bustours
+Hotels & Travel,hotelstravel,Food Tours,foodtours
+Hotels & Travel,hotelstravel,Historical Tours,historicaltours
+Hotels & Travel,hotelstravel,Walking Tours,walkingtours
+Hotels & Travel,hotelstravel,Wine Tours,winetours
+Nightlife,nightlife,Bars,bars
+Nightlife,nightlife,Dive Bars,divebars
+Nightlife,nightlife,Gay Bars,gaybars
+Nightlife,nightlife,Pubs,pubs
+Nightlife,nightlife,Wine Bars,wine_bars
+Nightlife,nightlife,Comedy Clubs,comedyclubs
+Nightlife,nightlife,Dance Clubs,danceclubs
+Nightlife,nightlife,Jazz & Blues,jazzandblues
+Nightlife,nightlife,Karaoke,karaoke
+Nightlife,nightlife,Pool Halls,poolhalls

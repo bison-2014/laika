@@ -10,13 +10,12 @@ require 'csv'
 
 # seed one user, if he/she doesn't exist
 def seed_user
-  user = User.find_by(email: 'user1@email.com')
+  user = User.find_by(email: 'joe@email.com')
   if user
     puts "Dummy user has already been added."
   else
-    user = User.create!(name: 'user1', email: 'user1@email.com', password: 'password')
+    user = User.create!(name: 'joe', email: 'joe@email.com', password: 'password')
     user.interests.push(Category.find_by(subcategory_name: "Arcades"))
-    user.interests.push(Category.find_by(subcategory_name: "Music Venues"))
     user.save!
     puts "Added dummy user '#{user.name}' with email '#{user.email}' to Users."
   end
@@ -25,11 +24,8 @@ end
 # Pick a route
 
 def seed_locations
-  # for demo, seed the following cities: Chicago, IL; Seattle, WA; Eau Claire, WI; Milwaukee, WI; Madison, WI; St. Paul, MN; Billings, MT; Missoula, MT; Spokane, WA; Tacoma, WA; Seattle, WA; Minneapolis, MN;
-  # may need to add more cities to make sure we get enough back when we change the route (see how it works and figure out those cities)
-
   # seed cities
-  CSV.foreach('db/major-us-cities.csv', headers: true) do |row|
+  CSV.foreach('db/demo-cities.csv', headers: true) do |row|
     longlat = { type: "Point", coordinates: [row['longitude'], row['latitude']] }
     Location.find_or_create_by(city: row['city'],
                              region: row['region'],
@@ -41,7 +37,7 @@ def seed_locations
 end
 
 def seed_categories
-  CSV.foreach('db/yelp-categories.csv', headers: true) do |row|
+  CSV.foreach('db/demo-yelp-categories.csv', headers: true) do |row|
     Category.find_or_create_by(name: row['name'],
                                code: row['code'],
                    subcategory_code: row['subcategory_code'],
@@ -50,7 +46,7 @@ def seed_categories
 end
 
 def has_location?(business)
-  business.respond_to?(:location) && business.location.respond_to?(:coordinate)
+  business.respond_to?(:location) && business.location.respond_to?(:coordinate) && business.location.respond_to?(:city) && business.location.respond_to?(:state_code)
 end
 
 def has_categories?(business)
@@ -62,7 +58,7 @@ def has_website?(business)
 end
 
 def seed_attractions
-  Location.where(city: 'Chicago').each do |location|
+  Location.each do |location|
     Category.each do |category|
 
       # check if you have already requested Yelp for this location and category
@@ -86,9 +82,11 @@ def seed_attractions
                                     },
                       review_count: business.review_count,
                           location: location,
-                          yelp_categories: business.categories,
+                              city: business.location.city,
+                             state: business.location.state_code,
+                   yelp_categories: business.categories,
                           yelp_url: business.url,
-                          yelp_mobile_url: business.mobile_url
+                   yelp_mobile_url: business.mobile_url,
                         )
           a.categories.push(category) unless a.categories.include?(category)
           a.save!

@@ -6,6 +6,8 @@ class Attraction
   field :rating, type: Integer
   field :review_count, type: Integer
   field :longlat, type: Hash
+  field :city, type: String
+  field :state, type: String
   field :yelp_id, type: String
   field :yelp_categories
   field :yelp_mobile_url, type: String

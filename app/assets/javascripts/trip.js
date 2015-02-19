@@ -12,7 +12,7 @@ $(document).ready(function() {
   $('#save-trip-button').click(function(event){
     event.preventDefault();
     console.log('button clicked')
-    var trip = new Trip(route.start, route.end, route.pitstop);
+    var trip = new Trip(route.start, route.end, route.pitstop, route.waypts, App.Waypoints);
     trip.save();
     console.log(trip);
   });
