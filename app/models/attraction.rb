@@ -28,11 +28,23 @@ class Attraction
   end
 
   def self.search_within(geometry, interests = [])
-    Attraction.where("longlat.coordinates" => {
+    # Grab all attractions within a geometry
+    attractions = Attraction.where("longlat.coordinates" => {
                       "$geoWithin" => {
                           "$geometry" => geometry
                         }
-                      }).all.to_a.select { |attraction| (attraction.categories & interests).any? }
+                      }).where(:rating.gt => 3).where(:review_count.gt => 5).order_by(:rating.desc).all.to_a
+
+    # Only grab attactions that share an interest with us
+    attractions.select! { |attraction| (attraction.categories & interests).any? }
+
+    # Only add the top 5 attractions per location
+    hash = Hash.new()
+    attractions.each do |attraction|
+      hash[attraction.location_id] ||= []
+      hash[attraction.location_id] << attraction if hash[attraction.location_id].length < 5
+    end
+    hash.values.flatten
   end
 
 end
