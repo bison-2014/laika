@@ -1,18 +1,27 @@
+@import "constants";
+
 nav {
   padding: .5% 5% 5% 5%;
 }
 
 nav li a {
-  padding-top: 20%;
   color: white;
   font-size: 3vw;
 }
 
 nav .top-bar-section {
+  padding-top: 1%;
   float: right;
 }
 
-.header_links {
-  padding-top: 5%;
-  font-size: 3vw;
+@media only screen and (max-width: 40em) {
+
+  nav li a {
+    color: white;
+    font-size: 5vw;
+  }
+
+  .title-area {
+    padding-top: 5%;
+  }
 }

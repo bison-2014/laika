@@ -1,15 +1,19 @@
 <script type="text/javascript">
   var START = "<%= j @start %>";
   var END = "<%= j @end %>";
-  var WAYPOINTS = "<%= j @waypoints %>";
+  var PITSTOP = "<%= j @pitstop %>";
 </script>
 
-<div id="map_canvas"></div>
+<div id="map_canvas" class="large-8 columns"></div>
 
-<div id='attractions_panel'>
+<div id='attractions_panel' class="small-12 large-4 columns ">
+  <h3><%= @start.upcase %> —> <%= @end.upcase %></h3>
+
   <a href='trips' id='save-trip-button'><button>Save my Trip</button></a>
+
   <div id="distance-counter"></div>
   <div id="duration-counter"></div>
+
   <ul id='attraction-list'>
   </ul>
 </div>

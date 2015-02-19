@@ -5,6 +5,7 @@ class MapsController < ApplicationController
   def display
     @start = params[:map][:from]
     @end = params[:map][:to]
+    @pitstop = params[:map][:waypoint]
   end
 
   def start_trip

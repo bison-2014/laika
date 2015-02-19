@@ -1,13 +1,22 @@
+@import "constants";
+
 .home_container {
+  margin-top: -1%;
   width: 100%;
   padding-bottom: 8%;
   background-image: url(road.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
+  background-color: $dark-green;
 }
 
 .get_route {
-  padding: 4% 5% 5% 5%;
+  padding: 4% 5% 3% 5%;
+}
+
+.get_route input[type=text] {
+  padding: 3%;
+  height: 30%;
 }
 
 #new_waypoint {
@@ -15,18 +24,25 @@
 }
 
 .fa {
-  color: black;
+  color: white;
   font-size: 4vw;
 }
 
 .full_width {
-  margin: 2%;
+  background-color: $dark-green;
+  color: white;
+  font-size: 1.5vw;
 }
 
 .full_width .how_to {
+  padding-top: 2%;
   padding-left: 2%;
   padding-right: 2%;
   text-align: center;
+}
+
+.full_width .fa-plus {
+  font-size: 4vw;
 }
 
 #waypoint {
@@ -43,7 +59,18 @@
 }
 
 .submit {
-  float: right;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  width: 30%;
+  height: 2%;
+  font-size: 1vw;
+  padding: 2%;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: darken($primary-color, 10);
 }
 
 .add_waypoint a {
@@ -52,7 +79,138 @@
   color: white;
 }
 
-.white {
+.fa-plus {
   font-size: 1.5vw;
-  color: white;
+}
+
+::-webkit-input-placeholder {
+   font-size: 1vw;
+   line-height: 1vw;
+}
+
+:-moz-placeholder {
+   font-size: 1vw;
+   line-height: 1vw;
+}
+
+::-moz-placeholder {
+   font-size: 1vw;
+   line-height: 1vw;
+}
+
+:-ms-input-placeholder {
+   font-size: 1vw;
+   line-height: 1vw;
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+
+  ::-webkit-input-placeholder {
+    font-size: 1.75vw;
+    line-height: 2vw;
+  }
+
+  :-moz-placeholder {
+    font-size: 1.75vw;
+    line-height: 2vw;
+  }
+
+  ::-moz-placeholder {
+    font-size: 1.75vw;
+    line-height: 2vw;
+  }
+
+  :-ms-input-placeholder {
+    font-size: 1.75vw;
+    line-height: 2vw;
+  }
+
+  .submit {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    width: 30%;
+    height: 3%;
+    font-size: 2vw;
+    padding: 2%;
+  }
+
+  .submit:hover {
+
+  }
+
+  .fa {
+    font-size: 6vw;
+  }
+
+  .add_waypoint a {
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: white;
+  }
+
+  .white {
+    font-size: 3vw;
+    color: white;
+  }
+
+}
+
+@media only screen and (max-width: 40em) {
+
+  ::-webkit-input-placeholder {
+    font-size: 3vw;
+    line-height: 3.5vw;
+  }
+
+  :-moz-placeholder {
+   font-size: 3vw;
+   line-height: 3.5vw;
+  }
+
+  ::-moz-placeholder {
+   font-size: 3vw;
+   line-height: 3.5vw;
+  }
+
+  :-ms-input-placeholder {
+   font-size: 3vw;
+   line-height: 3.5vw;
+  }
+
+  .submit {
+    width: 65%;
+    height: 10%;
+    font-size: 4vw;
+    padding-left: 0%;
+    padding-right: 2%;
+  }
+
+  .fa {
+    font-size: 8vw;
+    color: white;
+  }
+
+  .add_waypoint a {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .white {
+    font-size: 3vw;
+  }
+
+  .get_route {
+    padding: 5% 5% 8% 5%;
+  }
+
+  .home_container h1 {
+    font-size: 5vw;
+  }
+
+  #new_waypoint a {
+  font-size: 4vw;
+  }
+
 }

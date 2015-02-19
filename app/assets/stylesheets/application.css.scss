@@ -16,6 +16,8 @@
 
  */
 
+@import "constants";
+
 html body {
   width: 100%;
   height: 100%;
@@ -25,18 +27,14 @@ h1 {
   padding: 4% 2.5% 2.5% 2.5%;
   font-size: 4vw;
   text-align: center;
+  font-weight: bold;
 }
 
-.get_route {
-  padding: 5%;
+h3 {
+  margin-left: 3%;
+  margin-top: 2%;
 }
 
-#attractions_panel {
-  float: right;
-  width: 30%;
-  text-align: left;
-  padding-top: 20px;
-  margin: 0;
-  padding: 0;
+a {
+  color: white;
 }
-
