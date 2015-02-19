@@ -7,30 +7,69 @@
 }
 
 #attractions_panel {
+  height: 100%;
   text-align: left;
-  padding-top: 20px;
-  margin: 0;
-  padding: 0;
+  overflow-y: scroll;
 }
 
 #attractions_panel h3 {
   padding: 3%;
+  background-color: $dark-green;
+  color: white;
+  margin-bottom: 5%;
+  margin-left: -3.5%;
+  margin-top: -.60%;
+  width: 107%;
 }
 
 #attraction-list {
   list-style: none;
-  padding: 2%;
-  font-size: 1.5vw;
+  margin-left: -3%;
+  font-size: 1.25vw;
+  margin-top: -5%;
+}
+
+#attraction-list li {
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+#attraction-list li:nth-child(odd) {
+  background: #e2e7df;
+}
+
+#attraction-list li.saved {
+  background-color: #51b6c8;
+  color: white;
 }
 
 .add-button {
-  width: 40%;
-  height: 2%;
-  font-size: 1vw;
-  padding-left: 2%;
-  padding-right: 2%;
-  margin-left: 2%;
+  font-size: 1.25vw;
+  color: $primary-color;
 }
+
+.add-button .fa-plus {
+  color: $primary-color;
+}
+
+.add-button:hover {
+  color: darken($primary-color, 10);
+  cursor: pointer;
+}
+
+.remove-button {
+  color: $light-gray;
+  margin-top: -5%;
+  margin-left: 18%;
+  font-size: 1.5vw;
+}
+
+.remove-button:hover {
+  cursor: pointer;
+  color: darken($light-gray, 10)
+}
+
 
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
   #attraction-list li{
@@ -39,26 +78,29 @@
     font-size: 3vw;
   }
 
-  .add-button {
-    width: 20%;
-    height: 2%;
-    font-size: 2vw;
-    padding-left: 2%;
-    padding-right: 2%;
-    margin-left: 2%;
-  }
-
   #attractions_panel h3 {
     padding: 3%;
     font-size: 6vw;
   }
 
-  .fa {
-    font-size: 2vw;
+  .add-button .fa-plus{
+    font-size: 4vw;
   }
+
+  .remove-button {
+    color: $light-gray;
+    margin-top: -5%;
+    margin-left: 18%;
+    font-size: 1.5vw;
+  }
+
 }
 
 @media only screen and (max-width: 40em) {
+
+  #map_canvas {
+    height: 60%;
+  }
 
   #attraction-list li{
     list-style: none;
@@ -67,17 +109,23 @@
   }
 
   .add-button {
-    width: 30%;
-    height: 2%;
-    font-size: 3vw;
-    padding-left: 2%;
-    padding-right: 2%;
-    margin-left: 2%;
+    font-size: 4vw;
+    margin-right: -10%;
   }
 
   #attractions_panel h3 {
-    padding: 3%;
+    text-align: center;
     font-size: 6vw;
+    width: 110%;
+    margin-left: -5%;
+  }
+
+  .add-button .fa-plus {
+    font-size: 4vw;
+  }
+
+  .remove-button {
+    font-size: 5vw;
   }
 
 }

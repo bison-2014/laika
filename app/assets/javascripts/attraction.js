@@ -31,9 +31,9 @@ App.Attraction.prototype.createListItem = function() {
 
 App.Attraction.prototype.buildListItem = function() {
 
-  var li = $('<li>' + this.attrData.name + "</li>")
-  var add_button = $('<button class="add-button">Add to Trip</button>')
-  var close_button = $('<button class="remove-button">X</button>')
+  var li = $('<li><span class="small-6 columns attr_name">' + this.attrData.name + '</span></li>')
+  var add_button = $('<span class="add-button"><i class="fa fa-plus"></i> Add to Trip</span>')
+  var close_button = $('<span class="remove-button">X</span><br><br>')
 
   return li.append(add_button).append(close_button)
 }
@@ -57,7 +57,8 @@ App.Attraction.prototype.setListItemListeners = function(){
   $(this.$listItem).on('click', '.add-button', function(event) {
     event.preventDefault();
 
-    self.$listItem.addClass('saved')
+    self.$listItem.find('.add-button').text('Stop Saved').removeClass('add-button')
+    self.$listItem.removeClass('active').addClass('saved')
     route.addWaypoint(self);
   });
 

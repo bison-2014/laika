@@ -32,4 +32,11 @@ $( document ).ready(function() {
     $(".add_waypoint a").show();
   });
 
+  $("body").on("click", "#close_waypoint", function(event){
+    event.preventDefault();
+    $("#new_waypoint").hide();
+    $("#new_waypoint input").val(null);
+    $(".add_waypoint a").show();
+  });
+
 });
