@@ -57,6 +57,7 @@ App.Attraction.prototype.setListItemListeners = function(){
   $(this.$listItem).on('click', '.add-button', function(event) {
     event.preventDefault();
 
+    self.$listItem.find('.add-button').text('Stop Saved').removeClass('add-button')
     self.$listItem.addClass('saved')
     route.addWaypoint(self);
   });

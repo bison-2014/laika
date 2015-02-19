@@ -39,6 +39,10 @@
   background: #e2e7df;
 }
 
+#attraction-list li .saved {
+  background-color: black;
+}
+
 .add-button {
   font-size: 1.25vw;
   color: $primary-color;
@@ -64,6 +68,7 @@
   cursor: pointer;
   color: darken($light-gray, 10)
 }
+
 
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
   #attraction-list li{
