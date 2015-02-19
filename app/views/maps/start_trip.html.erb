@@ -8,15 +8,15 @@
       <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint", :style=> 'width: 85%' %><span id="close_waypoint"><a href="#">X</a></span></span>
     </div>
     <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to", :style=> 'width: 100%' %>
-      <div class="small-8 columns add_waypoint">
+      <div class="large-8 small-12 columns add_waypoint">
         <a href="#"><i class="fa fa-plus white"></i> Add Waypoint</a>
-      </div><%=f.submit "Submit", :class => "submit" %>
+      </div><%=f.submit "Submit", :class => "submit large-4 small-12 columns" %>
       <% end %>
     </div>
   </div>
 </div>
 <div class="full_width">
-  <ul class="large-block-grid-5 small-12 small-centered columns">
+  <ul class="large-12 large-block-grid-5 small-8 small-centered columns">
     <li class="how_to"><i class="fa fa-road"></i><br>Art? Tacos? Elvis? Fill out your travel profile & tell us what you brake for. <br> <%= link_to "GET STARTED >", users_profile_path %> </li>
     <li class="how_to"><i class="fa fa-map-marker"></i><br>Enter your origin & destination to get the quickest route from Point A to B.</li>
     <li class="how_to"><i class="fa fa-camera-retro"></i><br>See points of interest along your route. Not just any interest, your interest.</li>
