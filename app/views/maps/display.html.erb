@@ -9,11 +9,16 @@
 <div id='attractions_panel' class="small-12 large-4 columns ">
   <h3><%= @start.upcase %> —> <%= @end.upcase %></h3>
 
-  <a href='trips' id='save-trip-button'><button>Save my Trip</button></a>
+  <div class="small-6 columns counter">
+    <div id="distance-counter"></div>
+    <div id="duration-counter"></div>
+  </div>
 
-  <div id="distance-counter"></div>
-  <div id="duration-counter"></div>
+  <div class="small-5 columns">
+  <a href='trips' id='save-trip-button'><button>Save my Trip</button></a><br><br>
+  </div>
 
-  <ul id='attraction-list'>
+  <ul id='attraction-list' class="small-12 columns">
   </ul>
+
 </div>
