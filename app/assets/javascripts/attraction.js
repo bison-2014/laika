@@ -66,7 +66,7 @@ App.Attraction.prototype.setListItemListeners = function(){
     event.preventDefault();
 
     // hide DOM element
-    self.$listItem.hide();
+    self.$listItem.hide(400);
 
     // hide marker object's marker
     self.marker.marker.setMap(null);
