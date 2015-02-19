@@ -101,6 +101,7 @@ Route.prototype.displayRoute = function(response){
 
 Route.prototype.addWaypoint = function(attraction) {
   App.Waypoints.items.push(attraction);
+  attraction.marker.marker.setMap(null)
   route.calculateRoute();
 }
 
