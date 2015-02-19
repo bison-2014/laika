@@ -86,8 +86,10 @@ Route.prototype.calculateRoute = function(){
         distance += leg.distance.value;
         duration += leg.duration.value;
       });
+
       $('#distance-counter').text(Math.round(distance / 1609.34) + " miles")
-      $('#duration-counter').text(parseInt(duration / 3600) + " hours " + parseInt(duration / 60) + " minutes")
+
+      $('#duration-counter').text(parseInt(duration / 3600) + " hours " + parseInt((duration % 3600) / 60) + " minutes")
     }
   });
 };
