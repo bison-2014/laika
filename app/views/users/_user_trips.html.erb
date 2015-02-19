@@ -1,4 +1,4 @@
-<div>
+<div class="small-12 large-5 columns interests">
   <h3> Your Saved Trips:</h3>
   <% current_user.trips.each do |trip| %>
     <p><a href=""><%= trip.origin %> --> <%= trip.destination %></a></p>
