@@ -39,8 +39,9 @@
   background: #e2e7df;
 }
 
-#attraction-list li .saved {
-  background-color: black;
+#attraction-list li.saved {
+  background-color: #51b6c8;
+  color: white;
 }
 
 .add-button {
@@ -48,7 +49,7 @@
   color: $primary-color;
 }
 
-.add-button .fa-plus{
+.add-button .fa-plus {
   color: $primary-color;
 }
 
