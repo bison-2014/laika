@@ -23,8 +23,6 @@ MarkerObject.prototype.listenForUserInteraction = function(){
 
     // Change the marker color
     markerObject.changeMarkerColor();
-
-
   });
 };
 
