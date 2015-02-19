@@ -1,3 +1,5 @@
+@import "constants";
+
 .home_container {
   margin-top: -1%;
   width: 100%;
@@ -5,7 +7,7 @@
   background-image: url(road.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
-  background-color: #556b69;
+  background-color: $dark-green;
 }
 
 .get_route {
@@ -27,7 +29,7 @@
 }
 
 .full_width {
-  background-color: #556b69;
+  background-color: $dark-green;
   color: white;
   font-size: 1.5vw;
 }
@@ -57,13 +59,18 @@
 }
 
 .submit {
-  background-color: #008CBA;
+  background-color: $primary-color;
   color: white;
   border: none;
   width: 30%;
   height: 2%;
   font-size: 1vw;
   padding: 2%;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: darken($primary-color, 10);
 }
 
 .add_waypoint a {
@@ -119,13 +126,17 @@
   }
 
   .submit {
-    background-color: #008CBA;
+    background-color: $primary-color;
     color: white;
     border: none;
     width: 30%;
     height: 3%;
     font-size: 2vw;
     padding: 2%;
+  }
+
+  .submit:hover {
+
   }
 
   .fa {

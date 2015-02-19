@@ -1,5 +1,7 @@
+@import "constants";
+
 .bar {
-  background-color: #556b69;
+  background-color: $dark-green;
   height: 12%;
   margin: -1% -2% 2% -2%;
   padding: 2%;
