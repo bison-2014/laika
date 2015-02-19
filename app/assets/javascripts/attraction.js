@@ -47,6 +47,10 @@ App.Attraction.prototype.setListItemListeners = function(){
 
     $('li.active').removeClass('active')
     self.$listItem.addClass('active')
+
+    // move map marker and color marker
+    mapObject.map.panTo(self.marker.marker.getPosition());
+    self.marker.changeMarkerColor();
   });
 
   // Set a listener that will handle list item "add button "
