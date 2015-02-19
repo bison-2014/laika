@@ -6,11 +6,10 @@ class Trip
   field :destination, type: Location
   field :pitstop, type: String
   field :map_waypoints, type: Array
-  field :yelp_waypoints, type: Array
 
   belongs_to :user
 
-  has_many :waypoints, class_name: 'Attraction'
+  has_and_belongs_to_many :yelp_waypoints, class_name: 'Attraction'
 
   validates_presence_of :origin, :destination
 

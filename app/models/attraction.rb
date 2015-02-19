@@ -14,6 +14,7 @@ class Attraction
 
   belongs_to :location
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :trips
 
   validates_presence_of :name, :longlat, :yelp_id
   validates_uniqueness_of :yelp_id
