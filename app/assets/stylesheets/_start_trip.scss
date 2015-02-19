@@ -1,3 +1,5 @@
+@import "constants";
+
 .home_container {
   margin-top: -1%;
   width: 100%;
@@ -5,6 +7,7 @@
   background-image: url(road.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
+  background-color: $dark-green;
 }
 
 .get_route {
@@ -26,7 +29,7 @@
 }
 
 .full_width {
-  background-color: #556b69;
+  background-color: $dark-green;
   color: white;
   font-size: 1.5vw;
 }
@@ -56,13 +59,18 @@
 }
 
 .submit {
-  background-color: #008CBA;
+  background-color: $primary-color;
   color: white;
   border: none;
   width: 30%;
   height: 2%;
   font-size: 1vw;
   padding: 2%;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: darken($primary-color, 10);
 }
 
 .add_waypoint a {
@@ -77,46 +85,58 @@
 
 ::-webkit-input-placeholder {
    font-size: 1vw;
+   line-height: 1vw;
 }
 
 :-moz-placeholder {
    font-size: 1vw;
+   line-height: 1vw;
 }
 
 ::-moz-placeholder {
    font-size: 1vw;
+   line-height: 1vw;
 }
 
 :-ms-input-placeholder {
    font-size: 1vw;
+   line-height: 1vw;
 }
 
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
 
   ::-webkit-input-placeholder {
     font-size: 1.75vw;
+    line-height: 2vw;
   }
 
   :-moz-placeholder {
     font-size: 1.75vw;
+    line-height: 2vw;
   }
 
   ::-moz-placeholder {
     font-size: 1.75vw;
+    line-height: 2vw;
   }
 
   :-ms-input-placeholder {
     font-size: 1.75vw;
+    line-height: 2vw;
   }
 
   .submit {
-    background-color: #008CBA;
+    background-color: $primary-color;
     color: white;
     border: none;
     width: 30%;
     height: 3%;
     font-size: 2vw;
     padding: 2%;
+  }
+
+  .submit:hover {
+
   }
 
   .fa {
@@ -134,26 +154,29 @@
     color: white;
   }
 
-
 }
 
 @media only screen and (max-width: 40em) {
 
   ::-webkit-input-placeholder {
-   font-size: 3vw;
+    font-size: 3vw;
+    line-height: 3.5vw;
   }
 
   :-moz-placeholder {
-     font-size: 3vw;
-    }
+   font-size: 3vw;
+   line-height: 3.5vw;
+  }
 
   ::-moz-placeholder {
-     font-size: 3vw;
-    }
+   font-size: 3vw;
+   line-height: 3.5vw;
+  }
 
   :-ms-input-placeholder {
-     font-size: 2.75vw;
-    }
+   font-size: 3vw;
+   line-height: 3.5vw;
+  }
 
   .submit {
     width: 65%;
@@ -165,22 +188,29 @@
 
   .fa {
     font-size: 8vw;
+    color: white;
   }
 
   .add_waypoint a {
     font-size: 3vw;
     font-weight: bold;
-    color: black;
     text-align: center;
   }
 
   .white {
     font-size: 3vw;
-    color: black;
   }
 
   .get_route {
-    padding: 4% 5% 0% 5%;
+    padding: 5% 5% 8% 5%;
+  }
+
+  .home_container h1 {
+    font-size: 5vw;
+  }
+
+  #new_waypoint a {
+  font-size: 4vw;
   }
 
 }
