@@ -22,15 +22,14 @@ $( document ).ready(function() {
     event.preventDefault();
 
     $("#new_waypoint").show();
-
     $(".add_waypoint a").hide();
-    })
+  });
 
   $("body").on("click", "#close_waypoint", function(event){
     event.preventDefault();
-    $(".waypoint_placeholder").hide();
+    $("#new_waypoint").hide();
+    $("#new_waypoint input").val(null);
     $(".add_waypoint a").show();
-    $(".waypoint_placeholder").append( $("#new_waypoint").hide() );
-    })
+  });
 
 });
