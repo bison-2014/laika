@@ -1,6 +1,6 @@
 <% @main_interests.each do |main_interest| %>
   <div class="category-main-name <%= main_interest %>">
-    <h2><%= main_interest.name %> <i class="fa fa-caret-right"></i></h2>
+    <h2><%= main_interest.name %> <i class="fa la fa-caret-right"></i></h2>
     <% interests = @all_categories.select { |cat| cat.name == main_interest.name } %>
       <div class="small-12 columns subcategory-names <%= main_interest %>">
         <% interests.each do |interest| %>
