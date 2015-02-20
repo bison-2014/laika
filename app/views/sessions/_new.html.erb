@@ -1,0 +1,12 @@
+<h2>Log In</h2>
+
+  <%= form_tag log_in_path do %>
+    Email: <%= text_field_tag :email, :required => true, :style=> 'width: 100%' %><br>
+    Password: <%= password_field_tag :password, :required => true, :style=> 'width: 100%' %><br>
+
+    <div class='errors'><%= "Incorrect email or password." if errors.include? :authenticate %></div>
+
+    <%= submit_tag "Log in", :class => "submit large-4 small-12 columns" %>
+  <%end%>
+
+  <div class="signup"><%= link_to 'Sign Up', new_user_path %></div>

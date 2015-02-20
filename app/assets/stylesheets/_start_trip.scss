@@ -11,11 +11,32 @@
   background-color: $dark-green;
 }
 
+
 .get_route {
-  padding: 4% 5% 3% 5%;
+  padding: 4% 5% 10% 5%;
 }
 
 .get_route input[type=text] {
+  padding: 3%;
+  height: 30%;
+}
+
+.login_form {
+  display: none;
+  padding: 4% 5% 10% 5%;
+}
+
+.login_form input[type=text] {
+  padding: 3%;
+  height: 30%;
+}
+
+.signup_form {
+  display: none;
+  padding: 4% 5% 10% 5%;
+}
+
+.signup_form input[type=text] {
   padding: 3%;
   height: 30%;
 }
@@ -33,7 +54,6 @@
   background-color: $dark-green;
   color: white;
   font-size: 1.5vw;
-  margin-top: -20%;
 }
 
 .full_width .how_to {

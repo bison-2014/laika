@@ -19,9 +19,6 @@ class UsersController < ApplicationController
     arr = []
     @all_categories = Category.each  { |cat| arr << cat }
     @main_interests = arr.uniq { |cat| cat.name }
-
-    # @interests = Category.distinct(:subcategory_name)
-    # @interests = arr.uniq { |subcat| subcat.subcategory_name }
     @user_interests = current_user.interests.distinct(:subcategory_name)
 
     render 'edit'

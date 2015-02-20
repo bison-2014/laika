@@ -1,19 +1,26 @@
 <div class="small-12 home_container">
   <h1>Where can your interests take you?</h1>
 
-  <div class="small-5 small-centered large-4 columns get_route">
-    <%= form_for :map, :url => {action: 'display', controller: 'maps'}, method: 'POST', id:"calculate-route" do |f| %>
-    <%=f.text_field :from, :required => true, :placeholder => "Start Point", :id => "from", :style=> 'width: 100%' %>
-    <div class="waypoint_placeholder">
-      <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint", :style=> 'width: 85%' %><span id="close_waypoint"><a href="#">X</a></span></span>
+    <div class="small-5 small-centered large-4 columns get_route">
+      <%= form_for :map, :url => {action: 'display', controller: 'maps'}, method: 'POST', id:"calculate-route" do |f| %>
+      <%=f.text_field :from, :required => true, :placeholder => "Start Point", :id => "from", :style=> 'width: 100%' %>
+      <div class="waypoint_placeholder">
+        <span id="new_waypoint"><%=f.text_field :waypoint, :required => false, :placeholder => "Add a Stop", :id => "waypoint", :style=> 'width: 85%' %><span id="close_waypoint"><a href="#">X</a></span></span>
+      </div>
+      <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to", :style=> 'width: 100%' %>
+        <div class="large-8 small-12 columns add_waypoint">
+          <a href="#"><i class="fa fa-plus white"></i> Add Waypoint</a>
+        </div><%=f.submit "Submit", :class => "submit large-4 small-12 columns" %>
+        <% end %>
     </div>
-    <%=f.text_field :to, :required => true, :placeholder => "Final Destination", :id => "to", :style=> 'width: 100%' %>
-      <div class="large-8 small-12 columns add_waypoint">
-        <a href="#"><i class="fa fa-plus white"></i> Add Waypoint</a>
-      </div><%=f.submit "Submit", :class => "submit large-4 small-12 columns" %>
-      <% end %>
+
+    <div class="small-5 small-centered large-4 columns login_form">
+      <%= render partial: 'sessions/new' %>
     </div>
-  </div>
+
+    <div class="small-5 small-centered large-4 columns signup_form">
+      <%= render partial: 'users/new' %>
+    </div>
 
   <div class="full_width">
     <ul class="large-12 large-block-grid-5 small-8 small-centered columns">
