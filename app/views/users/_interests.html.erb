@@ -4,7 +4,7 @@
     <% interests = @all_categories.select { |cat| cat.name == main_interest.name } %>
       <div class="small-12 columns subcategory-names <%= main_interest %>">
         <% interests.each do |interest| %>
-          <p><%= check_box_tag 'interests[]', interest.subcategory_name, @user_interests.include?(interest.subcategory_name), multiple: true %><%= interest.subcategory_name %></p>
+          <p><%= check_box_tag 'interests[]', interest.subcategory_name, @user_interests.include?(interest.subcategory_name), multiple: true %>  <%= interest.subcategory_name %></p>
         <% end %>
       </div>
   </div>

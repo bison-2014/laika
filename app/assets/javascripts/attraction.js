@@ -32,7 +32,7 @@ App.Attraction.prototype.createListItem = function() {
 App.Attraction.prototype.buildListItem = function() {
 
 
-  var li = $('<li><span class="small-6 columns attr_name">' + this.attrData.name + '<p> ' + this.attrData.yelp_categories[0][0] + '</p>' + '<p>City: ' + this.attrData.city + ', ' + this.attrData.state + ' | Yelp Rating: ' + this.attrData.rating + '</p>' +'</span></li>')
+  var li = $('<li><span class="small-6 columns attr_name">' + this.attrData.name + '<p><strong> ' + this.attrData.yelp_categories[0][0] + '</strong><br>' + this.attrData.city + ', ' + this.attrData.state + ' | Yelp Rating: ' + this.attrData.rating + '</p>' +'</span></li>')
   var add_button = $('<span class="add-button"><i class="fa fa-plus"></i> Add to Trip</span>')
   var close_button = $('<span class="remove-button">X</span><br><br>')
 
