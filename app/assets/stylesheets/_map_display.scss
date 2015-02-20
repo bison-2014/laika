@@ -41,13 +41,13 @@
   background: $alternating;
 }
 
+#attraction-list li.active {
+  background-color: darken($alternating, 15);
+}
+
 #attraction-list li.saved {
   background-color: #51b6c8;
   color: white;
-}
-
-#attraction-list li.active {
-  background-color: darken($alternating, 15);
 }
 
 .add-button {

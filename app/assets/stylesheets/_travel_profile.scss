@@ -13,29 +13,41 @@
 }
 
 .interests {
-  border: 1px solid #a8beae;
-  border-radius: 10px;
   margin: 0 4% 2% 4%;
   padding-left: 2%;
 }
 
-.change_password {
-  display: none;
-  background-color: $primary-color;
-  padding: 2% 10% 2% 10%;
+.interests h3 {
+  padding: 3%;
+  background-color: $secondary-color;
+  color: white;
+  margin-bottom: 5%;
+  margin-left: -3.5%;
+  margin-top: -.60%;
+  width: 107%;
 }
 
-.change_password input[type=password] {
-  width: 50%;
-  margin-left: 2%;
-  margin-top: 2%;
+.category-main-name h2 {
+  background-color: white;
+  padding-left: 3%;
 }
 
-.manage_account a {
-  margin-left: 3%;
-  margin-right: -2%;
+.category-main-name h2:hover {
+  cursor: pointer;
+  background-color: darken($alternating, 10);
+  color: white;
+}
+
+.category-main-name h2 .fa {
+  color: $secondary-color;
+  font-size: 2vw;
+}
+
+h2 .fa:hover {
+  color: white;
 }
 
 .subcategory-names {
   display: none;
+  height: 10%;
 }
