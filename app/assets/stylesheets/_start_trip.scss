@@ -11,6 +11,12 @@
   background-color: $dark-green;
 }
 
+.home_container h3{
+  font-weight: bold;
+  margin-top: -10%;
+  color: white;
+  text-align: center;
+}
 
 .get_route {
   padding: 4% 5% 10% 5%;
@@ -22,23 +28,38 @@
 }
 
 .login_form {
+  color: white;
   display: none;
   padding: 4% 5% 10% 5%;
 }
 
 .login_form input[type=text] {
+  color: darken($light-gray, 15);
+  font-size: 1vw;
   padding: 3%;
   height: 30%;
+  margin-bottom: -2%;
 }
 
 .signup_form {
+  color: white;
   display: none;
   padding: 4% 5% 10% 5%;
 }
 
 .signup_form input[type=text] {
+  color: darken($light-gray, 15);
+  font-size: 1vw;
   padding: 3%;
   height: 30%;
+}
+
+.signup_form input[type=password] {
+  color: darken($light-gray, 15);
+  font-size: 1vw;
+  width: 100%;
+  margin-left: -3%;
+  margin-right: -3%;
 }
 
 #new_waypoint {
@@ -53,7 +74,6 @@
 .full_width {
   background-color: $dark-green;
   color: white;
-  font-size: 1.5vw;
 }
 
 .full_width .how_to {
@@ -61,6 +81,7 @@
   padding-left: 2%;
   padding-right: 2%;
   text-align: center;
+  font-size: 1.35vw;
 }
 
 .full_width .fa-plus {
@@ -106,6 +127,8 @@
 }
 
 ::-webkit-input-placeholder {
+
+
    font-size: 1vw;
    line-height: 1vw;
 }
