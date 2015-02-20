@@ -2,6 +2,6 @@
   <h3> Your Saved Trips</h3>
   <p>Browse your past trips and relive the journey!</p>
   <% current_user.trips.each do |trip| %>
-    <span class="trip"><a href=""><%= trip.origin %> –> <%= trip.destination %></a><span class="tripdate"><%= trip.updated_at.to_s.slice(0..9) %></span><span class="remove-button">X</span></span>
+    <span class="small-12 trip"><a href=""><%= trip.origin %> –> <%= trip.destination %></a><span class="tripdate"><%= trip.updated_at.to_s.slice(0..9) %></span><span class="remove-button">X</span></span><br>
   <% end %>
 </div>
