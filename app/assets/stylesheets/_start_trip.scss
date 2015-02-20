@@ -196,7 +196,12 @@
   }
 
   full_width {
-    margin-top: -50%;
+    margin-top: -20%;
+  }
+
+  .full_width .how_to{
+    margin-top: 4%;
+    font-size: 2.5vw;
   }
 
 }
@@ -229,6 +234,7 @@
     font-size: 4vw;
     padding-left: 0%;
     padding-right: 2%;
+    margin-top: 10%;
   }
 
   .fa {
@@ -258,8 +264,9 @@
     font-size: 4vw;
   }
 
-  .full_width {
-    margin-top: -115%;
+  .full_width .how_to{
+    margin-top: 4%;
+    font-size: 3vw;
   }
 
 

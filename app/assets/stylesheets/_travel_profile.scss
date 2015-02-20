@@ -17,6 +17,11 @@
   padding-left: 2%;
 }
 
+.interests a {
+  color: $primary-color;
+  font-size: 1.75vw;
+}
+
 .interests h3 {
   padding: 3%;
   background-color: $secondary-color;
@@ -34,6 +39,8 @@
 .category-main-name h2 {
   background-color: white;
   padding-left: 3%;
+  margin-left: -3%;
+  font-size: 2vw;
 }
 
 .category-main-name h2:hover {
@@ -52,6 +59,24 @@ h2 .fa:hover {
 }
 
 .subcategory-names {
+  margin-left: -3%;
   display: none;
   height: 10%;
+  width: 30%;
+  overflow-y: scroll;
 }
+
+.subname {
+  padding-left: 3%;
+}
+
+.tripdate {
+  padding-left: 2.5%;
+  font-size: 1.5vw;
+}
+
+.trip .remove-button {
+  padding-left: -20%;
+  font-size: 1.5vw;
+}
+
