@@ -39,4 +39,18 @@ $( document ).ready(function() {
     $(".add_waypoint a").show();
   });
 
+  $("body").on("click", ".login", function(event){
+    event.preventDefault();
+    $(".get_route").hide();
+    $(".signup_form").hide();
+    $(".login_form").show();
+  });
+
+  $("body").on("click", ".signup", function(event){
+    event.preventDefault();
+    $(".get_route").hide();
+    $(".login_form").hide();
+    $(".signup_form").show();
+  });
+
 });

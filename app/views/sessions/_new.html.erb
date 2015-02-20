@@ -1,0 +1,12 @@
+<h3>Log In</h3>
+
+  <%= form_tag log_in_path do %>
+    <%= text_field_tag :email, "Email" %><br>
+    <%= password_field_tag :password, "Password" %><br>
+
+    <div class='errors'><%= "Incorrect email or password." if errors.include? :authenticate %></div>
+
+    <%= submit_tag "Log in", :class => "submit large-4 small-12 columns" %>
+  <%end%>
+
+  <div class="signup"><strong><%= link_to 'Sign Up', new_user_path %></strong></div>

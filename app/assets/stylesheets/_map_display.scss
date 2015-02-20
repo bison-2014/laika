@@ -24,19 +24,25 @@
 
 #attraction-list {
   list-style: none;
-  margin-left: -3%;
   font-size: 1.25vw;
   margin-top: -5%;
+  width: 115%;
+  margin-right: -8%;
 }
 
 #attraction-list li {
   background: white;
+  padding-left: 3%;
   display: flex;
   align-items: center;
 }
 
 #attraction-list li:nth-child(odd) {
-  background: #e2e7df;
+  background: $alternating;
+}
+
+#attraction-list li.active {
+  background-color: darken($alternating, 15);
 }
 
 #attraction-list li.saved {
@@ -60,8 +66,7 @@
 
 .remove-button {
   color: $light-gray;
-  margin-top: -5%;
-  margin-left: 18%;
+  margin-left: 15%;
   font-size: 1.5vw;
 }
 

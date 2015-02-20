@@ -1,0 +1,14 @@
+<h3>Sign Up</h3>
+  <%= form_tag users_path do %>
+    <%= text_field_tag :name, "Name" %>
+    <%= text_field_tag :email, "Email" %>
+    <div class="small-6 columns">
+    Password         <%= password_field_tag :password, "Password" %>
+    </div>
+    <div class="small-6 columns">
+    Confirm Password          <%= password_field_tag :password_confirmation, "Confirm" %>
+    </div>
+
+    <%= errors.full_messages[0] if errors.any? %>
+    <%= submit_tag "Sign Up", :class => "submit" %>
+  <%end%>
