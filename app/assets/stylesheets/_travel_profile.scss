@@ -34,6 +34,7 @@
 .category-main-name h2 {
   background-color: white;
   padding-left: 3%;
+  margin-left: -3%;
 }
 
 .category-main-name h2:hover {
@@ -52,6 +53,13 @@ h2 .fa:hover {
 }
 
 .subcategory-names {
+  margin-left: -3%;
   display: none;
   height: 10%;
+  width: 30%;
+  overflow-y: scroll;
+}
+
+.subname {
+  padding-left: 3%;
 }
