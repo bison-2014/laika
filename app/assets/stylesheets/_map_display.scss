@@ -109,13 +109,15 @@
 @media only screen and (max-width: 40em) {
 
   #map_canvas {
-    height: 60%;
+    height: 50%;
   }
 
   #attraction-list li{
     list-style: none;
     padding: 2%;
     font-size: 4vw;
+    width: 110%;
+    margin-left: -5%;
   }
 
   .add-button {
@@ -131,11 +133,16 @@
   }
 
   .add-button .fa-plus {
-    font-size: 4vw;
+    font-size: 4.5vw;
   }
 
   .remove-button {
     font-size: 5vw;
+    padding-left: 10%;
+  }
+
+  .attr_name p {
+    font-size: 3.5vw;
   }
 
 }

@@ -13,17 +13,14 @@ function initialize() {
 
   directionsDisplay.setMap(mapObject.map);
 
-  // add a waypoint if it's necessary
-  // if (PITSTOP) {
-  //   route.waypts.push({
-  //       location: coords,
-  //       stopover: true});
-  // }
   route = new Route(START, END);
 }
 
+
+
 var MapObject = function(){
   this.mapOptions = {
+    styles: styles,
     zoom: 4,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -89,7 +86,7 @@ Route.prototype.calculateRoute = function(){
 
       $('#distance-counter').text(Math.round(distance / 1609.34) + " miles")
 
-      $('#duration-counter').text(parseInt(duration / 3600) + " hours " + parseInt((duration % 3600) / 60) + " minutes")
+      $('#duration-counter').text(parseInt(duration / 3600) + " hrs " + parseInt((duration % 3600) / 60) + " mins")
     }
   });
 };
@@ -185,10 +182,10 @@ Drawer.prototype.draw = function(geoJsonObject){
 
     this.bufferedPolygon = new google.maps.Polygon({
       paths: coordsToDraw,
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
+      strokeColor: '#49a789',
+      strokeOpacity: 0.5,
       strokeWeight: 2,
-      fillColor: '#FF0000',
+      fillColor: '#49a789',
       fillOpacity: 0.35
   });
 

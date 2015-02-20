@@ -17,6 +17,11 @@
   padding-left: 2%;
 }
 
+.interests a {
+  color: $primary-color;
+  font-size: 1.75vw;
+}
+
 .interests h3 {
   padding: 3%;
   background-color: $secondary-color;
@@ -35,6 +40,7 @@
   background-color: white;
   padding-left: 3%;
   margin-left: -3%;
+  font-size: 2vw;
 }
 
 .category-main-name h2:hover {
@@ -62,4 +68,10 @@ h2 .fa:hover {
 
 .subname {
   padding-left: 3%;
+}
+
+.tripdate {
+  padding-left: 3%;
+  float: right;
+  font-size: 1.75vw;
 }
